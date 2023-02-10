@@ -14,7 +14,7 @@ client.once('ready', () => {
   console.log('*************')
 });
 
-client.login('MTA3MTgwODIzNzMxNTMwOTU5OA.GLfSEP.U6FlnES0apF2SYB786Mwd4jSEKTIyKYFJLlBz8');
+client.login(process.env.TOKEN);
 
 const chanID = '1072225548023107625'
 
