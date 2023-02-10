@@ -93,7 +93,7 @@ async function ontime() {
     if (typeof ontime_toggle == 'undefined') {
       let ml = (10 - (parseInt(moment().format('mm')) % 10));
       console.log('**ontime call..')
-      ontime_switch(ml);
+      await ontime_switch(ml);
     }
     else if (ontime_toggle === 1) {
       await ontime_check(checkdate, 600000);
@@ -154,11 +154,11 @@ var chanmsg;     // 최종적으로 채널에 출력하는 메세지
 var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
 // WeeklyTasksCount.txt 파일 읽기
 
-  if (daynow == 5){
+  if (daynow == 2){
 
     console.log('[value] daynow == ' + daynow + ', timenow == ' + timenow);
 
-    if((timenow >= 214000) && (timenow < 221000)) {
+    if((timenow >= 220000) && (timenow < 221000)) {
 
       rl.on('line', function (line) {
         s = line.split(':');
@@ -176,10 +176,10 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
       });
     }
   }
-  else if (daynow == 6) {
+  else if (daynow == 3) {
     console.log('[value] daynow == ' + daynow + ', timenow == ' + timenow)
 
-    if((timenow >= 000000) && (timenow < 240000)) {
+    if((timenow >= 100000) && (timenow < 101000)) {
 
       rl.on('line', function (line) {
         s = line.split(':');
@@ -222,7 +222,7 @@ function event_Siege_checkdate() {
   var siege_chanmsg;
 
   if ((daynow == 6) || (daynow == 0)) {
-    const hours = '12, 16, 18, 19, 22, 23';
+    const hours = '02, 16, 18, 19, 22, 23';
     if (hours.includes(siege_hh) == true) {
       if ((siege_m >= 29) && (siege_m < 32)) {
         console.log('【event_Siege_checkdate】siege_m meets conditions:')
