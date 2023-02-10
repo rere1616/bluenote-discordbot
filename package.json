@@ -1,0 +1,20 @@
+{
+  "name": "bluenote-discordbot",
+  "version": "0.0.2",
+  "description": "블루노트 디스코드 봇",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rere1616/bluenote-discordbot.git"
+  },
+  "author": "rere_16",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rere1616/bluenote-discordbot/issues"
+  },
+  "homepage": "https://github.com/rere1616/bluenote-discordbot#readme"
+}
