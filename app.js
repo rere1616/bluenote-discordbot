@@ -201,7 +201,7 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
     }
   }
   else {
-    console.log('【WeeklyTasks】Conditions do not match')
+    console.log('【WeeklyTasks】Conditions do not match.')
     console.log('[value] daynow == ' + daynow + ', timenow == ' + timenow)
   }
   console.log('---');
@@ -222,10 +222,10 @@ function event_Siege_checkdate() {
   var siege_chanmsg;
 
   if ((daynow == 6) || (daynow == 0)) {
-    const hours = '02, 16, 18, 19, 22, 23';
+    const hours = '12, 16, 18, 19, 22, 23';
     if (hours.includes(siege_hh) == true) {
       if ((siege_m >= 29) && (siege_m < 32)) {
-        console.log('【event_Siege_checkdate】siege_m meets conditions:')
+        console.log('【event_Siege_checkdate】siege_m meets conditions.: ')
         console.log('[value] daynow == ' + daynow + ', siege_hh == ' + siege_hh + ', siege_m == ' + siege_m)
         let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'})
         siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
@@ -234,12 +234,12 @@ function event_Siege_checkdate() {
 
       }
       else {
-        console.log('【event_Siege_checkdate】Conditions do not match: siege_m')
+        console.log('【event_Siege_checkdate】Condition does not match.: siege_m')
       }
       //client.channels.cache.get(chanID).send(siege_chanmsg);
     }
     else {
-      console.log('【event_Siege_checkdate】Conditions do not match: siege_hh')
+      console.log('【event_Siege_checkdate】Condition does not match.: siege_hh')
     }
   }
 //  else {
