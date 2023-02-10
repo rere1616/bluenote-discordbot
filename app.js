@@ -16,7 +16,7 @@ client.once('ready', () => {
 
 client.login('MTA3MTgwODIzNzMxNTMwOTU5OA.GLfSEP.U6FlnES0apF2SYB786Mwd4jSEKTIyKYFJLlBz8');
 
-const chanID = '1073280926903181392'
+const chanID = '1072225548023107625'
 
 ///////////////  시간 관련 변수
 
@@ -229,7 +229,7 @@ function event_Siege_checkdate() {
         console.log('[value] daynow == ' + daynow + ', siege_hh == ' + siege_hh + ', siege_m == ' + siege_m)
         let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'})
         siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
-        client.channels.cache.get(chanID).send(siege_chanmsg);
+        client.channels.cache.get('1073648403319357491').send(siege_chanmsg);
         console.log('output messages...  ' + siege_chanmsg);
 
       }
