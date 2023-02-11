@@ -241,6 +241,9 @@ function event_Siege_checkdate() {
       console.log('【event_Siege_checkdate】Condition does not match.: siege_hh');
     }
   }
+  else {
+    console.log('【event_Siege_checkdate】Condition does not match.: daynow');
+  }
   console.log('[value] daynow == ' + daynow + ', siege_hh == ' + siege_hh + ', siege_m == ' + siege_m);
 //  else {
 //    console.log('【event_Siege_checkdate】Conditions do not match: daynow')
