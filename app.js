@@ -223,9 +223,6 @@ function event_Siege_checkdate() {
 
   if ((daynow == 6) || (daynow == 0)) {
     const hours = '12, 16, 18, 19, 22, 23';
-    console.log('siege[value] daynow == ' + daynow + ', siege_hh == ' + siege_hh + ', siege_m == ' + siege_m);
-    console.log('siege[value] true or false:  ' +  hours.includes(siege_hh))
-    console.log('siege[value][toString] true or false:  ' +  hours.includes(siege_hh.toString()))
     if (hours.includes(siege_hh) == true) {
       if ((siege_m > 29) && (siege_m <= 32)) {
         console.log('【event_Siege_checkdate】siege_m meets conditions.: ');
@@ -244,6 +241,7 @@ function event_Siege_checkdate() {
       console.log('【event_Siege_checkdate】Condition does not match.: siege_hh');
     }
   }
+  console.log('[value] daynow == ' + daynow + ', siege_hh == ' + siege_hh + ', siege_m == ' + siege_m);
 //  else {
 //    console.log('【event_Siege_checkdate】Conditions do not match: daynow')
 //  }
