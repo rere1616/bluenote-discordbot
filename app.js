@@ -224,7 +224,7 @@ function event_Siege_checkdate() {
   if ((daynow == 6) || (daynow == 0)) {
     const hours = '12, 16, 18, 19, 22, 23';
     if (hours.includes(siege_hh) == true) {
-      if ((siege_m >= 29) && (siege_m < 32)) {
+      if ((siege_m > 29) && (siege_m <= 32)) {
         console.log('【event_Siege_checkdate】siege_m meets conditions.: ')
         console.log('[value] daynow == ' + daynow + ', siege_hh == ' + siege_hh + ', siege_m == ' + siege_m)
         let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'})
