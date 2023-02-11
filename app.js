@@ -235,7 +235,7 @@ function event_Siege_checkdate() {
 //          var msgid = message.id
           var timerdelmsg = setTimeout(() => {
             client.channels.cache.get('1073280926903181392').messages.fetch(message.id).then(message => message.delete())
-          }, 2000)
+          }, 180000)
         });
         console.log('output messages...  ' + siege_chanmsg);
 
