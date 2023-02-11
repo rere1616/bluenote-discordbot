@@ -220,6 +220,8 @@ function event_Siege_checkdate() {
   var siege_hh = moment().format('HH');
   var siege_m = parseInt(moment().format('mm'));
   var siege_chanmsg;
+  var timerdelmsg;
+  var msgid;
 
   if ((daynow == 6) || (daynow == 0)) {
     const hours = '12, 16, 18, 19, 22, 23';
@@ -228,7 +230,13 @@ function event_Siege_checkdate() {
         console.log('【event_Siege_checkdate】siege_m meets conditions.: ');
         let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'});
         siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
-        client.channels.cache.get('1073648403319357491').send(siege_chanmsg);
+        let channel = client.channels.cache.get('1073280926903181392');
+        channel.send(siege_chanmsg).then(message => {
+//          var msgid = message.id
+          var timerdelmsg = setTimeout(() => {
+            client.channels.cache.get('1073280926903181392').messages.fetch(message.id).then(message => message.delete())
+          }, 2000)
+        });
         console.log('output messages...  ' + siege_chanmsg);
 
       }
