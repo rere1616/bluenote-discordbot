@@ -217,7 +217,7 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
 
 function event_Siege_checkdate() {
   var daynow = moment().day();
-  var siege_hh = moment().format('hh');
+  var siege_hh = moment().format('HH');
   var siege_m = parseInt(moment().format('mm'));
   var siege_chanmsg;
 
