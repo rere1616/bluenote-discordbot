@@ -9,14 +9,15 @@ const client = new Client({
 client.once('ready', () => {
   console.log('*************')
   console.log('The time now is..  ' + (datenow + ' (' + week[daynow] + ') ') + timenow)
-  console.log('Channel ID that I´m gonna send is..  ' + chanID)
+  console.log('Channel ID that I´m gonna send is..  ' + chanID1)
 	console.log('Ready.');
   console.log('*************')
 });
 
 client.login(process.env.TOKEN);
 
-const chanID = '1072225548023107625'
+const chanID1 = '1072225548023107625'
+const chanID2 = '1073648403319357491'
 
 ///////////////  시간 관련 변수
 
@@ -170,7 +171,7 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
         t = t.replace('today', (datenow + ' (' + week[daynow] + ')'));
         chanmsg = t.replace('assignment', mission);
 
-        client.channels.cache.get(chanID).send(chanmsg);
+        client.channels.cache.get(chanID1).send(chanmsg);
         console.log('【WeeklyTasks】output messages...  ' + chanmsg);
          // 채널에 메세지 출력
       });
@@ -191,7 +192,7 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
         t = t.replace('today', (datenow + ' (' + week[daynow] + ')'));
         chanmsg = t.replace('assignment', mission);
 
-        client.channels.cache.get(chanID).send(chanmsg);
+        client.channels.cache.get(chanID1).send(chanmsg);
         console.log('【WeeklyTasks】output messages...  ' + chanmsg);
          // 채널에 메세지 출력
       });
@@ -230,11 +231,11 @@ function event_Siege_checkdate() {
         console.log('【event_Siege_checkdate】siege_m meets conditions.: ');
         let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'});
         siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
-        let channel = client.channels.cache.get('1073280926903181392');
+        let channel = client.channels.cache.get(chanID2);
         channel.send(siege_chanmsg).then(message => {
 //          var msgid = message.id
           var timerdelmsg = setTimeout(() => {
-            client.channels.cache.get('1073280926903181392').messages.fetch(message.id).then(message => message.delete())
+            channel.messages.fetch(message.id).then(message => message.delete())
           }, 180000)
         });
         console.log('output messages...  ' + siege_chanmsg);
@@ -243,7 +244,7 @@ function event_Siege_checkdate() {
       else {
         console.log('【event_Siege_checkdate】Condition does not match.: siege_m');
       }
-      //client.channels.cache.get(chanID).send(siege_chanmsg);
+      //client.channels.cache.get(chanID2).send(siege_chanmsg);
     }
     else {
       console.log('【event_Siege_checkdate】Condition does not match.: siege_hh');
