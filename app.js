@@ -239,6 +239,7 @@ function event_Siege_checkdate() {
           }, 180000)
         });
         console.log('output messages...  ' + siege_chanmsg);
+        console.log('└the message will be deleted in 3 mins.')
 
       }
       else {
