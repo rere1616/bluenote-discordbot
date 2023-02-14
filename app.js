@@ -160,6 +160,7 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
     console.log('[value] daynow == ' + daynow + ', timenow == ' + timenow);
 
     if((timenow >= 220000) && (timenow < 221000)) {
+      var datenxt = moment().add(1, 'day')
 
       rl.on('line', function (line) {
         s = line.split(':');
@@ -168,7 +169,7 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
         console.log('【WeeklyTasks】finding txt...  ' + mission);
 
         var t = fs.readFileSync('tmp/phrases.txt', {encoding:'utf8', flag:'r'})
-        t = t.replace('today', (datenow + ' (' + week[daynow] + ')'));
+        t = t.replace('today', (datenxt.format('YYYY-MM-DD') + ' (' + week[(daynow + 1)] + ')'));
         chanmsg = t.replace('assignment', mission);
 
         client.channels.cache.get(chanID1).send(chanmsg);
