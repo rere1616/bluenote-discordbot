@@ -1,3 +1,5 @@
-**today**
-:ballot_box_with_check: 이번 주 길드 주간 목표
-```assignment```
+:pushpin: **Weekly_Tasks_alarm**
+```css
+[길드 주간 목표 알림] today
+assignment
+```
