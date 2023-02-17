@@ -178,10 +178,10 @@ async function Weekly_checkdate() {
         console.log('└Weekly_checkdate>> output messages...');
          // 채널에 메세지 출력
       });     */
-      console.log('└Weekly_checkdate>> Outputting messages..  ' + timestamp)
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + 'Weekly_checkdate>> Outputting messages..  ' + timestamp)
     }
     else {
-      console.log('└Weekly_checkdate>> Conditions do not match.: timenow')
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + 'Weekly_checkdate>> Conditions do not match.: timenow')
     }
   }
   else if (daynow == 3) {
@@ -206,18 +206,18 @@ async function Weekly_checkdate() {
         console.log('└Weekly_checkdate>> output messages...  ' + chanmsg);
          // 채널에 메세지 출력
       });     */
-      console.log('└Weekly_checkdate>> Outputting messages..  ' + timestamp)
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + 'Weekly_checkdate>> Outputting messages..  ' + timestamp)
 
       console.log('└Weekly_checkdate>> operate counter...');
       count_tasks()
       // 카운터 작동
     }
     else {
-      console.log('└Weekly_checkdate>> Conditions do not match.: timenow')
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + 'Weekly_checkdate>> Conditions do not match.: timenow')
     }
   }
   else {
-    console.log('└Weekly_checkdate>> Conditions do not match.: daynow')
+    console.log('[' + timestamp + '] ' + path.basename(__filename) + 'Weekly_checkdate>> Conditions do not match.: daynow')
   }
 
 }
