@@ -223,6 +223,7 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
 
 
 async function event_Siege_checkdate() {
+  var datenow = moment().format('YYYY-MM-DD');
   var daynow = moment().day();
   var siege_hh = moment().format('HH');
   var siege_m = parseInt(moment().format('mm'));
@@ -243,7 +244,7 @@ async function event_Siege_checkdate() {
         .setColor(0x004c9a)
         .setTitle(' ')
         //	.setURL('https://discord.js.org/')
-        .setAuthor({ name: '점령 이벤트 알림', iconURL: 'https://cdn-lostark.game.onstove.com/uploadfiles/notice/f9a83e3dcea640118b47ae6e8d8a1370.png' })
+        .setAuthor({ name: '점령 이벤트 알림', iconURL: 'https://cdn-lostark.game.onstove.com/uploadfiles/notice/f9a83e3dcea640118b47ae6e8d8a1370.png', url: 'https://lostark.game.onstove.com/GameGuide/Pages/%EA%B1%B0%EC%A0%90%20%EC%A0%90%EB%A0%B9%EC%A0%84#h5-5' })
         .setDescription(datenow + ' (' + week[daynow] + ')')
         .setThumbnail('https://ark.bynn.kr/assets/lostark/adventure_island3.png')
         .addFields(
