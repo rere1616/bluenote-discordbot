@@ -59,13 +59,14 @@ const fs = require('fs');
 //}
 
 function count_tasks() {
+  console.log('-------------')
   taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'});
-  console.log('└Weekly_checkdate>> check: count -- original value..  ' + taskcount);
+  console.log('└Weekly_checkdate>> count_tasks>> check: original value..  ' + taskcount);
   taskcount_new = ccount[taskcount]
 //  taskcount_new = parseInt(taskcount) + 1
-  console.log('└Weekly_checkdate>> check: counting complete. -- ' + taskcount_new);
+  console.log('└Weekly_checkdate>> count_tasks>> check: counting complete. -- ' + taskcount_new);
 
-  console.log('└Weekly_checkdate>> Update count file...');
+  console.log('└Weekly_checkdate>> count_tasks>> Start updating count file...');
   update_count()
 
 }
@@ -75,9 +76,10 @@ function update_count() {
     fs.writeFile('tmp/WeeklyTasksCount.txt', taskcount_new.toString(), 'utf8', function(err){
       if (err) throw err;
       else {
-        console.log('└Weekly_checkdate>> Update successed.');
+        console.log('└Weekly_checkdate>> update_count>> Update successed.');
       }
     });
+    console.log('-------------')
   }
 }
 
