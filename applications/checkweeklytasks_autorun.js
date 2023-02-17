@@ -109,7 +109,7 @@ function ontime_switch(t) {
   var ontime_check = setTimeout(Weekly_checkdate, msl);
   console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime called(' + t + ' min(s) later).')
   ontime_toggle = 1
-  console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> toggle is switched to ' + ontime_toggle)
+  console.log('└' + path.basename(__filename) + '>> toggle is switched to ' + ontime_toggle)
 }
 
 function ontime_check(fn, t) {
