@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const { Client, Collection, Intents, GatewayIntentBits } = require("discord.js");
-const { token } = require("config.json");
+const { token } = require("./config.json");
 const fs = require("fs");
 
 const client = new Discord.Client({
@@ -28,12 +28,12 @@ const autoappFiles = fs
 
 
 client.on("ready", async () => {
-/*  {
+  {
     for (const file of commandFiles) {
       const command = require(`./commands/${file}`);
       await client.commands.set(command.data.name, command);
     }
-  }  */
+  }
   {
     for (const file of autoappFiles) {
       const autorun = await require(`./applications/${file}`);
