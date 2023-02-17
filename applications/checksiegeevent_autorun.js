@@ -22,7 +22,7 @@ require('moment-timezone');
 
 moment.tz.setDefault("Asia/Seoul");
 
-var timestamp = moment().format('HH:mm:ss');
+var timestamp;
 const week = new Array('일', '월', '화', '수', '목', '금', '토');
 
 
@@ -32,6 +32,8 @@ var repeat;
 var ontime_toggle;
 
 async function ontime() {
+  var timestamp = moment().format('HH:mm:ss');
+
     if (typeof ontime_toggle == 'undefined') {
       let ml = (10 - (parseInt(moment().format('mm')) % 10));
       console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime call..')
@@ -43,12 +45,13 @@ async function ontime() {
 }
 
 function ontime_switch(t) {
+  var timestamp = moment().format('HH:mm:ss');
 
   var msl = ((t * 60) * 1000);
   var ontime_check = setTimeout(event_Siege_checkdate, msl);
   console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime called(' + t + ' min(s) later).')
   ontime_toggle = 1
-  console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> toggle is switched to ' + ontime_toggle)
+  console.log('└' + path.basename(__filename) + '>> toggle is switched to ' + ontime_toggle)
 }
 
 function ontime_check(fn, t) {
@@ -68,6 +71,7 @@ async function event_Siege_checkdate() {
 
   ontime();
 
+  var timestamp = moment().format('HH:mm:ss');
   var datenow = moment().format('YYYY-MM-DD');
   var daynow = moment().day();
   var siege_hh = moment().format('HH');
@@ -100,7 +104,7 @@ async function event_Siege_checkdate() {
         .setFooter({ text: '이 메세지는 3분 후 자동으로 삭제됩니다.' });
 
         await channel.send({ embeds: [siege_chanmsg] }).then(message => {
-          console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Outputting messages..  ' + timestamp)
+          console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Outputting messages...')
 //          var msgid = message.id
           var timerdelmsg = setTimeout(() => {
             channel.messages.fetch(message.id).then(message => message.delete())

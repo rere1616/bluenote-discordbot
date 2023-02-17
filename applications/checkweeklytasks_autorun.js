@@ -22,7 +22,7 @@ require('moment-timezone');
 
 moment.tz.setDefault("Asia/Seoul");
 
-var timestamp = moment().format('HH:mm:ss');
+var timestamp;
 
 var datenow = moment().format('YYYY-MM-DD');
 var timenow = moment().format('HHmmss');
@@ -90,6 +90,8 @@ var repeat;
 var ontime_toggle;
 
 async function ontime() {
+  var timestamp = moment().format('HH:mm:ss');
+
     if (typeof ontime_toggle == 'undefined') {
       let ml = (10 - (parseInt(moment().format('mm')) % 10));
       console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime call..')
@@ -101,6 +103,7 @@ async function ontime() {
 }
 
 function ontime_switch(t) {
+  var timestamp = moment().format('HH:mm:ss');
 
   var msl = ((t * 60) * 1000);
   var ontime_check = setTimeout(Weekly_checkdate, msl);
@@ -137,6 +140,7 @@ async function Weekly_checkdate() {
 
   ontime();
 
+  var timestamp = moment().format('HH:mm:ss');
   var datenow = moment().format('YYYY-MM-DD');
   var timenow = moment().format('HHmmss');
   var daynow = moment().day();
@@ -178,7 +182,7 @@ async function Weekly_checkdate() {
         console.log('└Weekly_checkdate>> output messages...');
          // 채널에 메세지 출력
       });     */
-      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages..  ' + timestamp)
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...')
     }
     else {
       console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Conditions do not match.: timenow')
@@ -206,7 +210,7 @@ async function Weekly_checkdate() {
         console.log('└Weekly_checkdate>> output messages...  ' + chanmsg);
          // 채널에 메세지 출력
       });     */
-      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages..  ' + timestamp)
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...')
 
       console.log('└Weekly_checkdate>> operate counter...');
       count_tasks()
