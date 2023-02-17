@@ -4,7 +4,7 @@ const { EmbedBuilder } = require('discord.js');
 
 ///////////////  채널 ID
 
-const { chanID1 } = require("./config.json");
+const { chanID1 } = require("/app/config.json");
 
 /////////////// 최초 실행
 function initapprun() {
