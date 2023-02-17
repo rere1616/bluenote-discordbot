@@ -17,12 +17,12 @@ client.login(process.env.TOKEN);
 
 client.commands = new Collection();
 const commandFiles = fs
-  .readdirSync('commands/')
+  .readdirSync('./commands')
   .filter((file) => file.endsWith(".js"));
 
 
 const autoappFiles = fs
-  .readdirSync('applications/')
+  .readdirSync('./applications')
   .filter((file) => file.endsWith("_autorun.js"));
 
 
@@ -36,7 +36,7 @@ client.on("ready", async () => {
   }  */
   {
     for (const file of autoappFiles) {
-      const autorun = await require(`/applications/${file}`);
+      const autorun = await require(`./applications/${file}`);
     }
   }
 
