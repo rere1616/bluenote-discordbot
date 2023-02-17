@@ -100,7 +100,7 @@ async function event_Siege_checkdate() {
         .setFooter({ text: '이 메세지는 3분 후 자동으로 삭제됩니다.' });
 
         await channel.send({ embeds: [siege_chanmsg] }).then(message => {
-          console.log('[' + timestamp + '] ' + path.basename(__filename) + 'event_Siege_checkdate>> Outputting messages..  ' + timestamp)
+          console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Outputting messages..  ' + timestamp)
 //          var msgid = message.id
           var timerdelmsg = setTimeout(() => {
             channel.messages.fetch(message.id).then(message => message.delete())
@@ -109,16 +109,16 @@ async function event_Siege_checkdate() {
         });
       }
       else {
-        console.log('[' + timestamp + '] ' + path.basename(__filename) + 'event_Siege_checkdate>> Condition does not match.: siege_m');
+        console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Condition does not match.: siege_m');
       }
       //client.channels.cache.get(chanID2).send(siege_chanmsg);
     }
     else {
-      console.log('[' + timestamp + '] ' + path.basename(__filename) + 'event_Siege_checkdate>> Conditions do not match.: siege_hh');
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Conditions do not match.: siege_hh');
     }
   }
   else {
-    console.log('[' + timestamp + '] ' + path.basename(__filename) + 'event_Siege_checkdate>> Conditions do not match.: daynow');
+    console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Conditions do not match.: daynow');
   }
   console.log('------')
 }
