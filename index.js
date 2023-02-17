@@ -36,7 +36,7 @@ client.on("ready", async () => {
   }  */
   {
     for (const file of autoappFiles) {
-      const autorun = await require(`applications/${file}`);
+      const autorun = await require(`/applications/${file}`);
     }
   }
 
