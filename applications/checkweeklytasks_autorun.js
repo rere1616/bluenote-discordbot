@@ -114,10 +114,22 @@ function ontime_check(fn, t) {
 //  else if (ontime_toggle === 'n')
 }
 
+///////////////  채널 출력 메세지 생성
+function createmsg(t, d, m) {
+  return new EmbedBuilder()
+  .setColor(0x004c9a)
+  .setTitle(' ')
+  .setAuthor({ name: '길드 주간 목표 알림', iconURL: 'https://ark.bynn.kr/assets/lostark/quest_guild.png' })
+  .setDescription(t + ' (' + d + ')')
+  .addFields(
+    { name: m, value: ' ' },
+  )
+  .setTimestamp()
+}
 
 
 ///////////////  길드 주간 목표 알람
-function Weekly_checkdate() {
+async function Weekly_checkdate() {
 
   ontime();
 
@@ -125,25 +137,31 @@ function Weekly_checkdate() {
   var timenow = moment().format('HHmmss');
   var daynow = moment().day();
 
-  const fileroute = 'tmp/taskslist.txt';
-  const readline = require('readline');
-  const rl = readline.createInterface({
-    input: fs.createReadStream('tmp/taskslist.txt')
-  });
+//  const fileroute = 'tmp/taskslist.txt';
+//  const readline = require('readline');
+//  const rl = readline.createInterface({
+//    input: fs.createReadStream('tmp/taskslist.txt')
+//  });
   var mission;
-  var chanmsg;     // 최종적으로 채널에 출력하는 메세지
+  var weekly_chanmsg;     // 최종적으로 채널에 출력하는 메세지
 
   var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
 //  WeeklyTasksCount.txt 파일 읽기
 
+
+
   if (daynow == 2){
 
     if((timenow >= 220000) && (timenow < 221000)) {
-      var datenxt = moment().add(1, 'day')
+      var datenxt = await moment().add(1, 'day')
+      var weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
+      //var mission =
+      let channel = client.channels.cache.get(chanID1);
 
-      rl.on('line', function (line) {
+      channel.send({ embeds: [weekly_chanmsg] });
+/*      rl.on('line', function (line) {
         s = line.split(':');
-        var mission = ('회랑, ' + s[taskcount]);
+        //var mission = ('회랑, ' + s[taskcount]);
         console.log('└Weekly_checkdate>> [value] taskcount == ' + taskcount);
         console.log('└Weekly_checkdate>> finding txt...  ' + mission);
 
@@ -152,9 +170,10 @@ function Weekly_checkdate() {
         chanmsg = t.replace('assignment', mission);
 
         client.channels.cache.get(chanID1).send(chanmsg);
-        console.log('└Weekly_checkdate>> output messages...  ' + chanmsg);
+
+        console.log('└Weekly_checkdate>> output messages...');
          // 채널에 메세지 출력
-      });
+      });     */
     }
     else {
       console.log('└Weekly_checkdate>> Conditions do not match.: timenow')
@@ -163,8 +182,12 @@ function Weekly_checkdate() {
   else if (daynow == 3) {
 
     if((timenow >= 100000) && (timenow < 101000)) {
+      var weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
+      //var mission =
+      let channel = client.channels.cache.get(chanID1);
 
-      rl.on('line', function (line) {
+      channel.send({ embeds: [weekly_chanmsg] });
+/*      rl.on('line', function (line) {
         s = line.split(':');
         var mission = ('회랑, ' + s[taskcount]);
         console.log('└Weekly_checkdate>> [value] taskcount == ' + taskcount);
@@ -177,7 +200,8 @@ function Weekly_checkdate() {
         client.channels.cache.get(chanID1).send(chanmsg);
         console.log('└Weekly_checkdate>> output messages...  ' + chanmsg);
          // 채널에 메세지 출력
-      });
+      });     */
+
       console.log('└Weekly_checkdate>> operate counter...');
       count_tasks()
       // 카운터 작동
