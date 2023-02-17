@@ -22,10 +22,12 @@ require('moment-timezone');
 
 moment.tz.setDefault("Asia/Seoul");
 
+var timestamp = moment().format('HH:mm:ss');
+
 var datenow = moment().format('YYYY-MM-DD');
 var timenow = moment().format('HHmmss');
 var daynow = moment().day();
-var week = new Array('일', '월', '화', '수', '목', '금', '토');
+const week = new Array('일', '월', '화', '수', '목', '금', '토');
 
 
 // console.log(datenow);
@@ -88,7 +90,7 @@ var ontime_toggle;
 async function ontime() {
     if (typeof ontime_toggle == 'undefined') {
       let ml = (10 - (parseInt(moment().format('mm')) % 10));
-      console.log(path.basename(__filename) + '>> ontime call..')
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime call..')
       await ontime_switch(ml);
     }
     else if (ontime_toggle === 1) {
@@ -100,9 +102,9 @@ function ontime_switch(t) {
 
   var msl = ((t * 60) * 1000);
   var ontime_check = setTimeout(Weekly_checkdate, msl);
-  console.log(path.basename(__filename) + '>> ontime called(' + t + ' min(s) later).')
+  console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime called(' + t + ' min(s) later).')
   ontime_toggle = 1
-  console.log(path.basename(__filename) + '>> toggle is switched to ' + ontime_toggle)
+  console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> toggle is switched to ' + ontime_toggle)
 }
 
 function ontime_check(fn, t) {
@@ -174,6 +176,7 @@ async function Weekly_checkdate() {
         console.log('└Weekly_checkdate>> output messages...');
          // 채널에 메세지 출력
       });     */
+      console.log('└Weekly_checkdate>> Outputting messages..  ' + timestamp)
     }
     else {
       console.log('└Weekly_checkdate>> Conditions do not match.: timenow')
@@ -201,6 +204,7 @@ async function Weekly_checkdate() {
         console.log('└Weekly_checkdate>> output messages...  ' + chanmsg);
          // 채널에 메세지 출력
       });     */
+      console.log('└Weekly_checkdate>> Outputting messages..  ' + timestamp)
 
       console.log('└Weekly_checkdate>> operate counter...');
       count_tasks()
