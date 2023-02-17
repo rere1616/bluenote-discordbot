@@ -16,6 +16,11 @@ client.once('ready', () => {
 
 client.login(process.env.TOKEN);
 
+const { EmbedBuilder } = require('discord.js');
+
+
+///////////////  채널 ID
+
 const chanID1 = '1072225548023107625'
 const chanID2 = '1073648403319357491'
 
@@ -160,6 +165,7 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
     console.log('[value] daynow == ' + daynow + ', timenow == ' + timenow);
 
     if((timenow >= 220000) && (timenow < 221000)) {
+      var datenxt = moment().add(1, 'day')
 
       rl.on('line', function (line) {
         s = line.split(':');
@@ -168,7 +174,7 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
         console.log('【WeeklyTasks】finding txt...  ' + mission);
 
         var t = fs.readFileSync('tmp/phrases.txt', {encoding:'utf8', flag:'r'})
-        t = t.replace('today', (datenow + ' (' + week[daynow] + ')'));
+        t = t.replace('today', (datenxt.format('YYYY-MM-DD') + ' (' + week[(daynow + 1)] + ')'));
         chanmsg = t.replace('assignment', mission);
 
         client.channels.cache.get(chanID1).send(chanmsg);
@@ -216,29 +222,45 @@ var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', f
 ///////////////  점령전 이벤트 알람
 
 
-function event_Siege_checkdate() {
+async function event_Siege_checkdate() {
   var daynow = moment().day();
   var siege_hh = moment().format('HH');
   var siege_m = parseInt(moment().format('mm'));
   var siege_chanmsg;
   var timerdelmsg;
-  var msgid;
+//  var msgid;
 
   if ((daynow == 6) || (daynow == 0)) {
     const hours = '12, 16, 18, 19, 22, 23';
     if (hours.includes(siege_hh) == true) {
       if ((siege_m > 29) && (siege_m <= 32)) {
         console.log('【event_Siege_checkdate】siege_m meets conditions.: ');
-        let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'});
-        siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
+//        let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'});
+//        siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
         let channel = client.channels.cache.get(chanID2);
-        channel.send(siege_chanmsg).then(message => {
+
+        const siege_chanmsg = new EmbedBuilder()
+        .setColor(0x004c9a)
+        .setTitle(' ')
+        //	.setURL('https://discord.js.org/')
+        .setAuthor({ name: '점령 이벤트 알림', iconURL: 'https://cdn-lostark.game.onstove.com/uploadfiles/notice/f9a83e3dcea640118b47ae6e8d8a1370.png' })
+        .setDescription(datenow + ' (' + week[daynow] + ')')
+        .setThumbnail('https://ark.bynn.kr/assets/lostark/adventure_island3.png')
+        .addFields(
+          { name: '메데이아', value: ' ' },
+//          { name: '\u200B', value: '\u200B' },
+          { name: '슬라임 아일랜드', value: ' ', inline: true },
+        )
+        .setTimestamp()
+        .setFooter({ text: '이 메세지는 3분 후 자동으로 삭제됩니다.' });
+
+        await channel.send({ embeds: [siege_chanmsg] }).then(message => {
 //          var msgid = message.id
           var timerdelmsg = setTimeout(() => {
             channel.messages.fetch(message.id).then(message => message.delete())
           }, 180000)
         });
-        console.log('output messages...  ' + siege_chanmsg);
+        console.log('output messages...');
         console.log('└the message will be deleted in 3 mins.')
 
       }
