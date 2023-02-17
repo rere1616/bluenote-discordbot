@@ -120,10 +120,7 @@ async function event_Siege_checkdate() {
   else {
     console.log('[' + timestamp + '] ' + path.basename(__filename) + 'event_Siege_checkdate>> Conditions do not match.: daynow');
   }
-//  console.log('[value] daynow == ' + daynow + ', siege_hh == ' + siege_hh + ', siege_m == ' + siege_m);
-//  else {
-//    console.log('【event_Siege_checkdate】Conditions do not match: daynow')
-//  }
+  console.log('------')
 }
 
 

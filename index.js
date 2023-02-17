@@ -40,16 +40,14 @@ const autoappFiles = fs
 
 
 client.on("ready", async () => {
-  {
     for (const file of commandFiles) {
+      console.log('Setting commands..  ' + file)
       const command = require(`./commands/${file}`);
       await client.commands.set(command.data.name, command);
     }
-  }
-  {
     for (const file of autoappFiles) {
+      console.log('Running apps..  ' + file)
       const autorun = await require(`./applications/${file}`);
     }
-  }
 
 });

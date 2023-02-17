@@ -219,7 +219,7 @@ async function Weekly_checkdate() {
   else {
     console.log('[' + timestamp + '] ' + path.basename(__filename) + 'Weekly_checkdate>> Conditions do not match.: daynow')
   }
-
+  console.log('------')
 }
 
 ///////////////
