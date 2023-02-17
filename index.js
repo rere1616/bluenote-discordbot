@@ -18,6 +18,7 @@ var daynow = moment().day();
 const week = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
 
 client.once('ready', () => {
+  console.log('\n')
   console.log('*************')
   console.log('The time now is..  ' + (datenow + ' (' + week[daynow] + ') ') + timestamp)
 	console.log('Ready.');
@@ -41,12 +42,12 @@ const autoappFiles = fs
 
 client.on("ready", async () => {
     for (const file of commandFiles) {
-      console.log('Setting commands..  ' + file)
+      console.log('Setting commands..  ‘' + file + '’')
       const command = require(`./commands/${file}`);
       await client.commands.set(command.data.name, command);
     }
     for (const file of autoappFiles) {
-      console.log('Running apps..  ' + file)
+      console.log('Running apps..  ‘' + file + '’')
       const autorun = await require(`./applications/${file}`);
     }
 
