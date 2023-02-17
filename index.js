@@ -22,7 +22,7 @@ client.once('ready', () => {
   console.log('The time now is..  ' + (datenow + ' (' + week[daynow] + ') ') + timestamp)
 	console.log('Ready.');
   console.log('*************')
-  console.log(\n)
+  console.log('\n')
 });
 
 client.login(process.env.TOKEN);
