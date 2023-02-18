@@ -49,10 +49,6 @@ client.on("ready", async () => {
       console.log('Setting commands..  ‘' + file + '’')
       const command = require(`./commands/${file}`);
       commands.push(command.data.toJSON());
-      await rest.put(
-        Routes.applicationGuildCommands(clientId, guildId),
-        { body: commands },
-      );
     }
     for (const file of autoappFiles) {
       console.log('Running apps..  ‘' + file + '’')
@@ -62,3 +58,21 @@ client.on("ready", async () => {
 });
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+
+// and deploy your commands!
+(async () => {
+	try {
+		console.log(`Started refreshing ${commands.length} application (/) commands.`);
+
+		// The put method is used to fully refresh all commands in the guild with the current set
+		const data = await rest.put(
+			Routes.applicationGuildCommands(clientId, guildId),
+			{ body: commands },
+		);
+
+		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+	} catch (error) {
+		// And of course, make sure you catch and log any errors!
+		console.error(error);
+	}
+})();
