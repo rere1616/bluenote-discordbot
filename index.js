@@ -23,7 +23,7 @@ client.once('ready', () => {
   console.log('\n')
   console.log('*************')
   console.log('The time now is..  ' + (datenow + ' (' + week[daynow] + ') ') + timestamp)
-	console.log('Ready.');
+	console.log('Client Ready.');
   console.log('*************')
   console.log('\n')
 });

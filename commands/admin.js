@@ -16,7 +16,7 @@ module.exports = {
 console.log('1: ' + interaction.user.id).catch(console.error);
 console.log('3: ' + `${interaction.user.id}`).catch(console.error);
 console.log('5: ' + `${interaction.user.username}`).catch(console.error);
-
+await interaction.reply('test');
 //    let user = client.users.cache.get(interaction.user.id);
 //    await user.send(`${interaction.user.username}, invalid Access.`).then(console.log('<<admin.js>> ' + timestamp + ` Invalid attempting to access by ${interaction.user.username}`)).catch(console.error);
   },
