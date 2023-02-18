@@ -14,9 +14,7 @@ module.exports = {
   async execute(interaction) {
 //    let guild = client.guilds.cache.get(interaction.guild_id);
 console.log('1: ' + interaction.user.id).catch(console.error);
-console.log('2: ' + ${interaction.user.id}).catch(console.error);
 console.log('3: ' + `${interaction.user.id}`).catch(console.error);
-console.log('4: ' + ${interaction.user.username}).catch(console.error);
 console.log('5: ' + `${interaction.user.username}`).catch(console.error);
 
 //    let user = client.users.cache.get(interaction.user.id);
