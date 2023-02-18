@@ -1,6 +1,6 @@
-const path = require("path");
-const { EmbedBuilder } = require('discord.js');
 const client = require("../index.js");
+const { EmbedBuilder } = require('discord.js');
+const path = require("path");
 
 
 ///////////////  채널 ID
