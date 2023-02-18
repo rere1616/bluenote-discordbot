@@ -1,10 +1,11 @@
 const path = require("path");
 const { EmbedBuilder } = require('discord.js');
+const client = require("../index.js");
 
 
 ///////////////  채널 ID
 
-const { chanID1 } = require("/app/config.json");
+const chanID1 = require("../config.json");
 
 /////////////// 최초 실행
 function initapprun() {
@@ -151,7 +152,6 @@ async function Weekly_checkdate() {
 //    input: fs.createReadStream('tmp/taskslist.txt')
 //  });
   var mission;
-  var weekly_chanmsg;     // 최종적으로 채널에 출력하는 메세지
 
   var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
 //  WeeklyTasksCount.txt 파일 읽기
@@ -162,7 +162,7 @@ async function Weekly_checkdate() {
 
     if((timenow >= 220000) && (timenow < 221000)) {
       var datenxt = await moment().add(1, 'day')
-      var weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
+      let weekly_chanmsg = createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       //var mission =
       let channel = client.channels.cache.get(chanID1);
 
@@ -191,7 +191,7 @@ async function Weekly_checkdate() {
   else if (daynow == 3) {
 
     if((timenow >= 100000) && (timenow < 101000)) {
-      var weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
+      let weekly_chanmsg = createmsg(datenow, week[daynow], mission);
       //var mission =
       let channel = client.channels.cache.get(chanID1);
 
