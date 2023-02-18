@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const { Client, Collection, Intents, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
 
-const guildId = require("../config.json");
+const guildId = require("./config.json");
 
 const client = new Discord.Client({
     intents: [
