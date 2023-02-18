@@ -53,7 +53,7 @@ client.on("ready", async () => {
         Routes.applicationGuildCommands(clientId, guildId),
         { body: commands },
       )
-      .then(console.log(`└'` + file + `'` + `Successfully deployed.`))
+      .then(console.log('**[' + file + '] Successfully deployed.'))
       .catch(console.error);
     }
     for (const file of autoappFiles) {
