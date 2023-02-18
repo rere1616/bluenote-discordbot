@@ -46,17 +46,23 @@ const autoappFiles = fs
 
 client.on("ready", async () => {
     for (const file of commandFiles) {
-      console.log('Setting commands..  ‘' + file + '’')
+      console.log(`Setting commands..  '` + file + `'`)
       const command = require(`./commands/${file}`);
       commands.push(command.data.toJSON());
       await rest.put(
         Routes.applicationGuildCommands(clientId, guildId),
         { body: commands },
-      );
+      )
+      .then(console.log('Successfully deployed.'))
+      .catch(console.error);
     }
     for (const file of autoappFiles) {
-      console.log('Running apps..  ‘' + file + '’')
-      const autorun = await require(`./applications/${file}`);
+      console.log(`Running apps..  '` + file + `'`)
+      try {
+        const autorun = await require(`./applications/${file}`);
+      } catch (error) {
+        console.error(error);
+      }
     }
 
 });
