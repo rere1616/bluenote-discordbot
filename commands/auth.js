@@ -9,7 +9,7 @@ var timestamp = moment().format('HH:mm:ss');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("admin")
+    .setName("auth")
     .setDescription("Access to the bot as authorized admin."),
     async execute(interaction) {
       await interaction.reply({ content: 'invalid Access.', ephemeral: true });
