@@ -104,7 +104,7 @@ async function event_Siege_checkdate() {
         let siege_chanmsg == createmsg(datenow, week[daynow])
 //        let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'});
 //        siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
-        let channel = await client.channels.cache.get(chanID2);
+        let channel = client.channels.cache.get(chanID2);
 
         channel.send({ embeds: [siege_chanmsg] }).then(message => {
           console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Outputting messages...')

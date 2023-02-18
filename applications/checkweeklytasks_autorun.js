@@ -164,7 +164,7 @@ async function Weekly_checkdate() {
       var datenxt = await moment().add(1, 'day')
       let weekly_chanmsg = createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       //var mission =
-      let channel = await client.channels.cache.get(chanID1);
+      let channel = client.channels.cache.get(chanID1);
 
       channel.send({ embeds: [weekly_chanmsg] });
 /*      rl.on('line', function (line) {
@@ -193,7 +193,7 @@ async function Weekly_checkdate() {
     if((timenow >= 100000) && (timenow < 101000)) {
       let weekly_chanmsg = createmsg(datenow, week[daynow], mission);
       //var mission =
-      let channel = await client.channels.cache.get(chanID1);
+      let channel = client.channels.cache.get(chanID1);
 
       channel.send({ embeds: [weekly_chanmsg] });
 /*      rl.on('line', function (line) {
