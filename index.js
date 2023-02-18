@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const { Client, Collection, Intents, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
 
+const guildId = require("../config.json");
+
 const client = new Discord.Client({
     intents: [
         GatewayIntentBits.Guilds
@@ -47,7 +49,7 @@ client.on("ready", async () => {
     for (const file of commandFiles) {
       console.log('Setting commands..  ‘' + file + '’')
       const command = require(`./commands/${file}`);
-      await client.application.commands.set(command.data.name, command);
+      await client.application.commands.set(command.data.name, guildId);
     }
     for (const file of autoappFiles) {
       console.log('Running apps..  ‘' + file + '’')
