@@ -1,8 +1,7 @@
 const Discord = require('discord.js');
-const { Client, Collection, Intents, GatewayIntentBits } = require("discord.js");
+const { Client, Collection, Intents, GatewayIntentBits, REST, Routes } = require("discord.js");
+const { clientId, guildId } = require('./config.json');
 const fs = require("fs");
-
-const guildId = require("./config.json");
 
 const client = new Discord.Client({
     intents: [
@@ -49,7 +48,11 @@ client.on("ready", async () => {
     for (const file of commandFiles) {
       console.log('Setting commands..  ‘' + file + '’')
       const command = require(`./commands/${file}`);
-      await client.commands.set(command.data.name, guildId);
+      commands.push(command.data.toJSON());
+      await rest.put(
+        Routes.applicationGuildCommands(clientId, guildId),
+        { body: commands },
+      );
     }
     for (const file of autoappFiles) {
       console.log('Running apps..  ‘' + file + '’')
@@ -57,3 +60,5 @@ client.on("ready", async () => {
     }
 
 });
+
+const rest = new REST({ version: '10' }).setToken(token);
