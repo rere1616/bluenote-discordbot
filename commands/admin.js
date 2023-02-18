@@ -13,7 +13,7 @@ module.exports = {
     .setDescription("Access to the bot as authorized admin."),
   async execute(interaction) {
 //    let guild = client.guilds.cache.get(interaction.guild_id);
-    let user = client.users.cache.get(interaction.user.id);
+    let user = client.users.cache.get(`${interaction.user.id}`);
     await user.send(`${interaction.user.username}, invalid Access.`).then(console.log('<<admin.js>> ' + timestamp + ` Invalid attempting to access by ${interaction.user.username}`)).catch(console.error);
   },
 };
