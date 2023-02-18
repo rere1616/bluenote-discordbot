@@ -49,7 +49,7 @@ client.on("ready", async () => {
     for (const file of commandFiles) {
       console.log('Setting commands..  ‘' + file + '’')
       const command = require(`./commands/${file}`);
-      await client.application.commands.set(command.data.name, guildId);
+      await client.commands.set(command.data.name, guildId);
     }
     for (const file of autoappFiles) {
       console.log('Running apps..  ‘' + file + '’')
