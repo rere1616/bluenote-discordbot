@@ -11,7 +11,7 @@ const chanID1 = require("../config.json");
 function initapprun() {
   var init_check = setTimeout(Weekly_checkdate, 0)
   console.log('**[' + path.basename(__filename) + '] start')
-}
+};
 
 module.exports = initapprun();
 
