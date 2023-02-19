@@ -1,4 +1,4 @@
-const { client, Collection } = require("../index.js");
+const client = require("../index.js");
 const { EmbedBuilder } = require('discord.js');
 const path = require("path");
 
@@ -8,7 +8,7 @@ const path = require("path");
 const chanID2 = require("../config.json");
 
 /////////////// 최초 실행
-async function initapprun() {
+function initapprun() {
   var init_check = setTimeout(event_Siege_checkdate, 0)
   console.log('**[' + path.basename(__filename) + '] start')
 };
@@ -98,7 +98,7 @@ async function event_Siege_checkdate() {
 //  var msgid;
 
   if ((daynow == 6) || (daynow == 0)) {
-    const hours = '12, 16, 18, 19, 22, 23';
+    const hours = '12, 16, 18, 19, 20, 22, 23';
     if (hours.includes(siege_hh) == true) {
       if ((siege_m > 00) && (siege_m <= 60)) {
         let siege_chanmsg = await createmsg(datenow, week[daynow])
