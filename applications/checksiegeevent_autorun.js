@@ -1,4 +1,4 @@
-const client = require("../index.js");
+var client;
 const { EmbedBuilder } = require('discord.js');
 const path = require("path");
 
@@ -8,7 +8,8 @@ const path = require("path");
 const chanID2 = require("../config.json");
 
 /////////////// 최초 실행
-function initapprun() {
+async function initapprun() {
+  var client = await require("../index.js");
   var init_check = setTimeout(event_Siege_checkdate, 0)
   console.log('**[' + path.basename(__filename) + '] start')
 };
