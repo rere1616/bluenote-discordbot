@@ -74,6 +74,6 @@ client.on(Events.InteractionCreate, async interaction => {
 
 	if (interaction.commandName === 'auth') {
     await interaction.reply({ content: `${interaction.user.username}, Invalid Access.`, ephemeral: true });
-    console.log(`<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.username}`)
+    console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.username}\n`)
 	}
 });
