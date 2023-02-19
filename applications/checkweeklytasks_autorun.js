@@ -161,9 +161,9 @@ async function Weekly_checkdate() {
   if (daynow == 2){
 
     if((timenow >= 220000) && (timenow < 221000)) {
-      var datenxt = await moment().add(1, 'day')
+      let datenxt = await moment().add(1, 'day')
+      let mission = 'Undefined'
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
-      //var mission =
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
       .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
@@ -193,8 +193,8 @@ async function Weekly_checkdate() {
   else if (daynow == 3) {
 
     if((timenow >= 100000) && (timenow < 101000)) {
+      let mission = 'Undefined'
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
-      //var mission =
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
       .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
@@ -216,8 +216,8 @@ async function Weekly_checkdate() {
          // 채널에 메세지 출력
       });     */
 
-      count_tasks()
-      .then(console.log('└Weekly_checkdate>> operate counter...'));
+      count_tasks();
+      console.log('└Weekly_checkdate>> operate counter...');
       // 카운터 작동
     }
     else {
