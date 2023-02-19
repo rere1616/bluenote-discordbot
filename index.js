@@ -68,3 +68,12 @@ client.on("ready", async () => {
 });
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+
+client.on(Events.InteractionCreate, async interaction => {
+	if (!interaction.isChatInputCommand()) return;
+
+	if (interaction.commandName === 'auth') {
+    await interaction.reply({ content: `${interaction.user.username}, Invalid Access.`, ephemeral: true });
+    console.log(`<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.username}`)
+	}
+});
