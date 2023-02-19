@@ -1,4 +1,4 @@
-var client;
+const client = require("../index.js");
 const { EmbedBuilder } = require('discord.js');
 const path = require("path");
 
@@ -9,7 +9,6 @@ const chanID2 = require("../config.json");
 
 /////////////// 최초 실행
 async function initapprun() {
-  var client = await require("../index.js");
   var init_check = setTimeout(event_Siege_checkdate, 0)
   console.log('**[' + path.basename(__filename) + '] start')
 };
@@ -107,7 +106,7 @@ async function event_Siege_checkdate() {
 //        siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
         let channel = await client.channels.cache.get(chanID2);
 
-        channel.send({ embeds: [siege_chanmsg] }).then(message => {
+        await channel.send({ embeds: [siege_chanmsg] }).then(message => {
           console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Outputting messages...')
           var timerdelmsg = setTimeout(() => {
             channel.messages.fetch(message.id).then(message => message.delete()).catch(console.error)
