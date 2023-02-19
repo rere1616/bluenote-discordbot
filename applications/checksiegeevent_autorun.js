@@ -108,7 +108,7 @@ async function event_Siege_checkdate() {
         const channel = await client.channels.fetch(chanID2);
 
 
-        channel.send({ embeds: [siege_chanmsg] }).then(message => {
+        channel.send({content: "Example Message"}).then(message => {
           console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Outputting messages...')
           var timerdelmsg = setTimeout(() => {
             channel.messages.fetch(message.id).then(message => message.delete()).catch(console.error)
