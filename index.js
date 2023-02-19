@@ -15,9 +15,9 @@ client.once('ready', () => {
   require('moment-timezone');
   moment.tz.setDefault("Asia/Seoul");
 
-  var timestamp = moment().format('HH:mm:ss');
-  var datenow = moment().format('YYYY-MM-DD');
-  var daynow = moment().day();
+  const timestamp = moment().format('HH:mm:ss');
+  const datenow = moment().format('YYYY-MM-DD');
+  const daynow = moment().day();
   const week = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
 
   console.log('\n')
@@ -73,7 +73,8 @@ client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
 	if (interaction.commandName === 'auth') {
-    await interaction.reply({ content: `${interaction.user.username}, Invalid Access.`, ephemeral: true });
-    console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.username}\n`)
+    const timestamp = moment().format('HH:mm:ss');
+    await interaction.reply({ content: `${interaction.user.tag}, Invalid Access.`, ephemeral: true });
+    console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.tag}\n`)
 	}
 });
