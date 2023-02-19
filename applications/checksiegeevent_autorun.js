@@ -105,7 +105,7 @@ async function event_Siege_checkdate() {
 //        let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'});
 //        siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
         //let channel = await client.channels.cache.get(chanID2);
-        const channel = await client.channels.fetch(1073648403319357491);
+        const channel = await client.channels.fetch('1073648403319357491');
         channel.send({ embeds: [siege_chanmsg] }).then(message => {
           console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Outputting messages...')
           var timerdelmsg = setTimeout(() => {
