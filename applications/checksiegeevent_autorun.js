@@ -5,7 +5,7 @@ const path = require("path");
 
 ///////////////  채널 ID
 
-const chanID2 = require("../config.json");
+const { chanID2 } = require("../config.json");
 
 /////////////// 최초 실행
 function initapprun() {
