@@ -32,6 +32,7 @@ module.exports = client;
 
 client.login(process.env.TOKEN);
 
+client.commands = new Collection();
 const commands = [];
 const commandFiles = fs
   .readdirSync("./commands")
