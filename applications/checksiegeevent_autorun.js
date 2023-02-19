@@ -1,4 +1,4 @@
-const client = require("../index.js");
+const { client, Collection } = require("../index.js");
 const { EmbedBuilder } = require('discord.js');
 const path = require("path");
 
