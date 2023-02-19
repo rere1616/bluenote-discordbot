@@ -47,12 +47,6 @@ const autoappFiles = fs
   client.on("ready", async () => {
 
     {
-      for (const file of commandFiles) {
-        const command = require(`./commands/${file}`);
-        await client.commands.set(command.data.name, command);
-      }
-    }
-    {
       for (const file of autoappFiles) {
         const autoapp = await require(`./applications/${file}`);
       }
