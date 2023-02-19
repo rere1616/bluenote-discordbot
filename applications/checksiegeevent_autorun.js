@@ -109,10 +109,11 @@ async function event_Siege_checkdate() {
         channel.send({ embeds: [siege_chanmsg] }).then(message => {
           console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Outputting messages...')
           var timerdelmsg = setTimeout(() => {
-            channel.messages.fetch(message.id).then(message => message.delete())
+            channel.messages.fetch(message.id).then(message => message.delete()).catch(console.error)
           }, 180000)
           console.log('└the message will be deleted in 3 mins.')
-        });
+        })
+        .catch(console.error);
       }
       else {
         console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Condition does not match.: siege_m');
