@@ -100,7 +100,7 @@ async function event_Siege_checkdate() {
   if ((daynow == 6) || (daynow == 0)) {
     const hours = '12, 16, 18, 19, 22, 23';
     if (hours.includes(siege_hh) == true) {
-      if ((siege_m > 29) && (siege_m <= 32)) {
+      if ((siege_m > 29) && (siege_m <= 60)) {
         let siege_chanmsg = createmsg(datenow, week[daynow])
 //        let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'});
 //        siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
