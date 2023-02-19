@@ -44,41 +44,18 @@ const autoappFiles = fs
 
 
 
-client.on("ready", async () => {
-    for (const file of commandFiles) {
-      console.log(`Setting commands..  '` + file + `'`)
-      const command = require(`./commands/${file}`);
-      commands.push(command.data.toJSON());
-      await rest.put(
-        Routes.applicationGuildCommands(clientId, guildId),
-        { body: commands },
-      )
-      .then(console.log('**[' + file + '] Successfully deployed.'))
-      .catch(console.error);
+  client.on("ready", async () => {
+
+    {
+      for (const file of commandFiles) {
+        const command = require(`./commands/${file}`);
+        await client.commands.set(command.data.name, command);
+      }
     }
-    for (const file of autoappFiles) {
-      console.log(`Running apps..  '` + file + `'`)
-      try {
-        const autorun = await require(`./applications/${file}`);
-      } catch (error) {
-        console.error(error);
+    {
+      for (const file of autoappFiles) {
+        const autoapp = await require(`./applications/${file}`);
       }
     }
 
-});
-
-const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
-
-/////////////////////////////////
-client.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-
-	if (interaction.commandName === 'auth') {
-    const moment = require('moment');
-    require('moment-timezone');
-    moment.tz.setDefault("Asia/Seoul");
-    const timestamp = moment().format('HH:mm:ss');
-    await interaction.reply({ content: `${interaction.user.tag}, Invalid Access.`, ephemeral: true });
-    console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.tag}\n`)
-	}
-});
+  });
