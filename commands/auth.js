@@ -12,7 +12,7 @@ module.exports = {
     .setName("auth")
     .setDescription("Access to the bot as authorized admin."),
     async execute(interaction) {
-      await interaction.reply({ content: 'invalid Access.', ephemeral: true });
+      await interaction.reply({ content: `Invalid Access.`, ephemeral: true });
   	},
 //    let guild = client.guilds.cache.get(interaction.guild_id);
 //    let user = client.users.cache.get(interaction.user.id);
