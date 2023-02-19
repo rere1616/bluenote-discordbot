@@ -96,6 +96,7 @@ async function event_Siege_checkdate() {
   var siege_m = parseInt(moment().format('mm'));
   var timerdelmsg;
 //  var msgid;
+  let channel = await client.channels.cache.get(chanID2);
 
   if ((daynow == 6) || (daynow == 0)) {
     const hours = '12, 16, 18, 19, 20, 22, 23';
@@ -104,7 +105,6 @@ async function event_Siege_checkdate() {
         let siege_chanmsg = await createmsg(datenow, week[daynow])
 //        let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'});
 //        siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
-        let channel = await client.channels.fetch(parseInt(chanID2));
 
         channel.send({ embeds: [siege_chanmsg] }).then(message => {
           console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Outputting messages...')
