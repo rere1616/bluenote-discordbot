@@ -73,6 +73,9 @@ client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
 	if (interaction.commandName === 'auth') {
+    const moment = require('moment');
+    require('moment-timezone');
+    moment.tz.setDefault("Asia/Seoul");
     const timestamp = moment().format('HH:mm:ss');
     await interaction.reply({ content: `${interaction.user.tag}, Invalid Access.`, ephemeral: true });
     console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.tag}\n`)
