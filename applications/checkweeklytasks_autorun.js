@@ -5,7 +5,7 @@ const path = require("path");
 
 ///////////////  채널 ID
 
-const chanID1 = require("../config.json");
+const { chanID1 } = require("../config.json");
 
 /////////////// 최초 실행
 function initapprun() {
@@ -68,7 +68,7 @@ function count_tasks() {
   console.log('└Weekly_checkdate>> count_tasks>> check: counting complete. -- ' + taskcount_new);
 
   console.log('└Weekly_checkdate>> count_tasks>> Start updating count file...');
-  update_count()
+  update_count();
 
 }
 
@@ -80,7 +80,7 @@ function update_count() {
         console.log('└Weekly_checkdate>> update_count>> Update successed.');
       }
     });
-    console.log('-------------')
+    console.log('-------------');
   }
 }
 
@@ -95,7 +95,7 @@ async function ontime() {
 
     if (typeof ontime_toggle == 'undefined') {
       let ml = (10 - (parseInt(moment().format('mm')) % 10));
-      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime call..')
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime call..');
       await ontime_switch(ml);
     }
     else if (ontime_toggle === 1) {
@@ -108,16 +108,16 @@ function ontime_switch(t) {
 
   var msl = ((t * 60) * 1000);
   var ontime_check = setTimeout(Weekly_checkdate, msl);
-  console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime called(' + t + ' min(s) later).')
+  console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime called(' + t + ' min(s) later).');
   ontime_toggle = 1
-  console.log('└' + path.basename(__filename) + '>> toggle is switched to ' + ontime_toggle)
+  console.log('└' + path.basename(__filename) + '>> toggle is switched to ' + ontime_toggle);
 }
 
 function ontime_check(fn, t) {
   if (ontime_toggle === 1) {
     var repeat = setInterval(eval(fn), t);
-    console.log('**' + path.basename(__filename, '.js') + ' function will be operated every ' + (t / 1000) + ' secs.')
-    ontime_toggle = 'n'
+    console.log('**' + path.basename(__filename, '.js') + ' function will be operated every ' + (t / 1000) + ' secs.');
+    ontime_toggle = `n`;
   }
 //  else if (ontime_toggle === 'n')
 }
@@ -132,7 +132,7 @@ function createmsg(t, d, m) {
   .addFields(
     { name: m, value: ' ' },
   )
-  .setTimestamp()
+  .setTimestamp();
 }
 
 
@@ -153,7 +153,7 @@ async function Weekly_checkdate() {
 //  });
   var mission;
 
-  var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
+  var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'});
 //  WeeklyTasksCount.txt 파일 읽기
 
 
@@ -162,11 +162,14 @@ async function Weekly_checkdate() {
 
     if((timenow >= 220000) && (timenow < 221000)) {
       var datenxt = await moment().add(1, 'day')
-      let weekly_chanmsg = createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
+      let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       //var mission =
-      let channel = await client.channels.cache.get(chanID1);
+      const channel = await client.channels.fetch(chanID1);
+      channel.send({ embeds: [weekly_chanmsg] })
+      .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
+      .catch(console.error);
 
-      channel.send({ embeds: [weekly_chanmsg] });
+
 /*      rl.on('line', function (line) {
         s = line.split(':');
         //var mission = ('회랑, ' + s[taskcount]);
@@ -182,20 +185,22 @@ async function Weekly_checkdate() {
         console.log('└Weekly_checkdate>> output messages...');
          // 채널에 메세지 출력
       });     */
-      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...')
     }
     else {
-      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Conditions do not match.: timenow')
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Conditions do not match.: timenow');
     }
   }
   else if (daynow == 3) {
 
     if((timenow >= 100000) && (timenow < 101000)) {
-      let weekly_chanmsg = createmsg(datenow, week[daynow], mission);
+      let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       //var mission =
-      let channel = await client.channels.cache.get(chanID1);
+      const channel = await client.channels.fetch(chanID1);
+      channel.send({ embeds: [weekly_chanmsg] })
+      .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
+      .catch(console.error);
 
-      channel.send({ embeds: [weekly_chanmsg] });
+
 /*      rl.on('line', function (line) {
         s = line.split(':');
         var mission = ('회랑, ' + s[taskcount]);
@@ -210,20 +215,19 @@ async function Weekly_checkdate() {
         console.log('└Weekly_checkdate>> output messages...  ' + chanmsg);
          // 채널에 메세지 출력
       });     */
-      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...')
 
-      console.log('└Weekly_checkdate>> operate counter...');
       count_tasks()
+      .then(console.log('└Weekly_checkdate>> operate counter...'));
       // 카운터 작동
     }
     else {
-      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Conditions do not match.: timenow')
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Conditions do not match.: timenow');
     }
   }
   else {
-    console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Conditions do not match.: daynow')
+    console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Conditions do not match.: daynow');
   }
-  console.log('------')
+  console.log('------');
 }
 
 ///////////////

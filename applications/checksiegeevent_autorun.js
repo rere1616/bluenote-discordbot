@@ -37,7 +37,7 @@ async function ontime() {
 
     if (typeof ontime_toggle == 'undefined') {
       let ml = (10 - (parseInt(moment().format('mm')) % 10));
-      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime call..')
+      console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime call..');
       await ontime_switch(ml);
     }
     else if (ontime_toggle === 1) {
@@ -50,16 +50,16 @@ function ontime_switch(t) {
 
   var msl = ((t * 60) * 1000);
   var ontime_check = setTimeout(event_Siege_checkdate, msl);
-  console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime called(' + t + ' min(s) later).')
+  console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> ontime called(' + t + ' min(s) later).');
   ontime_toggle = 1
-  console.log('└' + path.basename(__filename) + '>> toggle is switched to ' + ontime_toggle)
+  console.log('└' + path.basename(__filename) + '>> toggle is switched to ' + ontime_toggle);
 }
 
 function ontime_check(fn, t) {
   if (ontime_toggle === 1) {
     var repeat = setInterval(eval(fn), t);
-    console.log('**' + path.basename(__filename, '.js') + ' function will be operated every ' + (t / 1000) + ' secs.')
-    ontime_toggle = 'n'
+    console.log('**' + path.basename(__filename, '.js') + ' function will be operated every ' + (t / 1000) + ' secs.');
+    ontime_toggle = `n`;
   }
 //  else if (ontime_toggle === 'n')
 }
@@ -98,10 +98,10 @@ async function event_Siege_checkdate() {
 //  var msgid;
 
   if ((daynow == 6) || (daynow == 0)) {
-    const hours = '12, 16, 18, 19, 20, 22, 23';
+    const hours = '12, 16, 18, 19, 22, 23';
     if (hours.includes(siege_hh) == true) {
-      if ((siege_m > 00) && (siege_m <= 60)) {
-        let siege_chanmsg = await createmsg(datenow, week[daynow])
+      if ((siege_m > 29) && (siege_m <= 32)) {
+        let siege_chanmsg = await createmsg(datenow, week[daynow]);
 //        let t = fs.readFileSync('tmp/siege_phrases.txt', {encoding:'utf8', flag:'r'});
 //        siege_chanmsg = t.replace('time', (siege_hh + ':' + siege_m));
         //let channel = await client.channels.cache.get(chanID2);
@@ -127,7 +127,7 @@ async function event_Siege_checkdate() {
   else {
     console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> event_Siege_checkdate>> Conditions do not match.: daynow');
   }
-  console.log('------')
+  console.log('------');
 }
 
 
