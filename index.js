@@ -69,6 +69,7 @@ client.on("ready", async () => {
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
+/////////////////////////////////
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
