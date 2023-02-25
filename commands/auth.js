@@ -42,13 +42,13 @@ client.on(Events.InteractionCreate, async interaction => {
     let getverified = await compareid(userid);
     if (!getverified) {
       interaction.reply({ content: `${interaction.user.tag}, Invalid Access.`, ephemeral: true });
-      console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.tag}\n`)
-//      client.user.fetch('343282328858132484').send(`An invalid access attempt was made by ${interaction.user.tag}`)
+      console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.id} ${interaction.user.tag}\n`)
+      client.user.fetch('343282328858132484').send(`An invalid access attempt was made by ${interaction.user.tag}`)
     }
     else if (getverified) {
       interaction.reply({ content: `${interaction.user.tag}, Logged on.`, ephemeral: true });
       console.log(`\n<<auth.js>> ` + timestamp + ` ${interaction.user.id} ${interaction.user.tag} has just logged on.\n`)
-//      client.user.fetch('343282328858132484').send(`An invalid access attempt was made by ${interaction.user.tag}`)
+      client.user.fetch('343282328858132484').send(`${interaction.user.id} ${interaction.user.tag} has just logged on.`)
     }
     else { console.log('error.') }
 	}
