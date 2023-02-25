@@ -14,7 +14,7 @@ function compareid(v) {
   return new Promise((resolve, reject) => {
     rl.on('line', function (line) {
       if (line === v) { resolve(line); }
-      else { return; }
+      else { return false; }
     })
   })
 };
@@ -42,7 +42,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
     let getverified = await compareid(userid);
     console.log('getverified: ' + getverified)
-    if (Undefined) {
+    if (!getverified) {
       interaction.reply({ content: `${interaction.user.tag}, Invalid Access.`, ephemeral: true });
       console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.id} ${interaction.user.tag}\n`)
 //      client.user.fetch('343282328858132484').send(`An invalid access attempt was made by ${interaction.user.tag}`)
