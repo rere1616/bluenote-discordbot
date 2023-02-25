@@ -1,21 +1,6 @@
 const client = require("../index.js");
 const { SlashCommandBuilder, Events } = require("discord.js");
 
-const moment = require('moment');
-require('moment-timezone');
-moment.tz.setDefault("Asia/Seoul");
-
-async function compareid(v) {
-  const fs = await require('fs');
-  const readline = await require('readline');
-  const rl = await readline.createInterface({
-       input: fs.createReadStream('./tmp/adminid.txt')
-  });
-  rl.on('line', function (line) {
-    if (line === v) { return v; }
-    else { return; }
-  })
-};
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -34,15 +19,11 @@ client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
 	if (interaction.commandName === 'auth') {
-    const timestamp = await moment().format('HH:mm:ss');
-    const userid = await `'${interaction.user.tag}'`
-    compareid(userid).then(ret => {
-      console.log(ret)
-    });
-//    else if () {
-//      await interaction.reply({ content: `${interaction.user.tag}, Invalid Access.`, ephemeral: true });
-//      console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.tag}\n`)
-//    }
-
+    const moment = require('moment');
+    require('moment-timezone');
+    moment.tz.setDefault("Asia/Seoul");
+    const timestamp = moment().format('HH:mm:ss');
+    await interaction.reply({ content: `${interaction.user.tag}, Invalid Access.`, ephemeral: true });
+    console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.id} ${interaction.user.tag}\n`)
 	}
 });
