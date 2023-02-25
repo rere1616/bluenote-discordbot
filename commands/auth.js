@@ -24,6 +24,6 @@ client.on(Events.InteractionCreate, async interaction => {
     moment.tz.setDefault("Asia/Seoul");
     const timestamp = moment().format('HH:mm:ss');
     await interaction.reply({ content: `${interaction.user.tag}, Invalid Access.`, ephemeral: true });
-    console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.id}${interaction.user.tag}\n`)
+    console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.id} ${interaction.user.tag}\n`)
 	}
 });
