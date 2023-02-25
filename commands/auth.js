@@ -38,8 +38,10 @@ client.on(Events.InteractionCreate, async interaction => {
 	if (interaction.commandName === 'auth') {
     const timestamp = await moment().format('HH:mm:ss');
     const userid = await `'${interaction.user.id}'`
+    console.log('userid: ' + userid)
 
     let getverified = await compareid(userid);
+    console.log('getverified: ' + getverified)
     if (undefined) {
       interaction.reply({ content: `${interaction.user.tag}, Invalid Access.`, ephemeral: true });
       console.log(`\n<<auth.js>> ` + timestamp + ` An invalid access attempt was made by ${interaction.user.id} ${interaction.user.tag}\n`)
