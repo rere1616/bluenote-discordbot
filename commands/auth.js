@@ -48,7 +48,7 @@ client.on(Events.InteractionCreate, async interaction => {
 //      client.user.fetch('343282328858132484').send(`An invalid access attempt was made by ${interaction.user.tag}`)
     }
     else if (getverified) {
-      interaction.reply({ content: `${interaction.user.tag}, Logged on.`, ephemeral: true });
+      interaction.reply({ content: `${interaction.user.tag}, Logged on(during 1 hour(s)).`, ephemeral: true });
       console.log(`\n<<auth.js>> ` + timestamp + ` ${interaction.user.id} ${interaction.user.tag} has just logged on.\n`)
 //      client.user.fetch('343282328858132484').send(`${interaction.user.id} ${interaction.user.tag} has just logged on.`)
     }
