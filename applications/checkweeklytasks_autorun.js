@@ -178,7 +178,7 @@ async function Weekly_checkdate() {
 
   if (daynow == 2){
 
-    if((timenow >= 220000) && (timenow < 222000)) {
+    if((timenow >= 220000) && (timenow < 222500)) {
       let datenxt = await moment().add(1, 'day')
       let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
