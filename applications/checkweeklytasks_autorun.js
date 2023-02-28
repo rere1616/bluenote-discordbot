@@ -178,7 +178,7 @@ async function Weekly_checkdate() {
 
   if (daynow == 2){
 
-    if((timenow >= 220000) && (timenow < 223000)) {
+    if((timenow >= 220000) && (timenow < 221000)) {
       let datenxt = await moment().add(1, 'day')
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 let mission = `큐브, 주화, 위험해역`
