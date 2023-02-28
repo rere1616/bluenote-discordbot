@@ -178,9 +178,9 @@ async function Weekly_checkdate() {
 
   if (daynow == 2){
 
-    if((timenow >= 220000) && (timenow < 221000)) {
+    if((timenow >= 220000) && (timenow < 222000)) {
       let datenxt = await moment().add(1, 'day')
-      let mission = await load('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
@@ -211,7 +211,7 @@ async function Weekly_checkdate() {
   else if (daynow == 3) {
 
     if((timenow >= 100000) && (timenow < 101000)) {
-      let mission = await load('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
