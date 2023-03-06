@@ -125,7 +125,7 @@ function ontime_check(fn, t) {
 ///////////////  채널 출력 메세지 생성
 var mission;
 
-async function loadms(t, n) {
+function loadms(t, n) {
   const readline = require('readline');
   const rl = readline.createInterface({
        input: fs.createReadStream(t)
@@ -134,9 +134,9 @@ async function loadms(t, n) {
     rl.on('line', function (line) {
       let taskcount = fs.readFileSync(n, {encoding:'utf8', flag:'r'})
       let s = line.split(':');
-      var mission = s[taskcount];
+      var ms = s[taskcount];
 
-      resolve(mission);
+      resolve(ms);
     })
   })
 };
