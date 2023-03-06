@@ -150,7 +150,7 @@ function createmsg(t, d, m) {
   .setAuthor({ name: '길드 주간 목표 알림', iconURL: 'https://ark.bynn.kr/assets/lostark/quest_guild.png' })
   .setDescription(t + ' (' + d + ')')
   .addFields(
-    { name: m, value: 'test' },
+    { name: m, value: ' ' },
   )
   .setTimestamp();
 }
@@ -179,10 +179,13 @@ async function Weekly_checkdate() {
   if (daynow == 2){
 
     if((timenow >= 000000) && (timenow < 221000)) {
-      let datenxt = await moment().add(1, 'day')
+      let datenxt = moment().add(1, 'day')
+      let t = datenxt.format('YYYY-MM-DD')
+      let d = week[(daynow + 1)]
+      
       let mission = await loadms('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 //let mission = `큐브, 위험해역, 고고학`
-      let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
+      let weekly_chanmsg = await createmsg(t, d, mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
       .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
