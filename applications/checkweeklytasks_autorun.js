@@ -169,7 +169,7 @@ async function Weekly_checkdate() {
 
   if (daynow == 2) {
 
-    if ((timenow >= 000000) && (timenow < 221000)) {
+    if ((timenow >= 220000) && (timenow < 221000)) {
 //      let mission = await loadms('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 let mission = `큐브, 위험해역, 고고학`
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
