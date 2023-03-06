@@ -163,15 +163,15 @@ async function Weekly_checkdate() {
 
   var timestamp = moment().format('HH:mm:ss');
   var datenow = moment().format('YYYY-MM-DD');
+  var datenxt = moment().add(1, 'day')
   var timenow = moment().format('HHmmss');
   var daynow = moment().day();
 
-  var datenxt = await moment().add(1, 'day')
-  var mission = await loadms('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
-
-  if (daynow == 2){
+  if (daynow == 2) {
 
     if ((timenow >= 000000) && (timenow < 221000)) {
+//      let mission = await loadms('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+let mission = `큐브, 위험해역, 고고학`
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
