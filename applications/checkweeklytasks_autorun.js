@@ -172,7 +172,7 @@ async function Weekly_checkdate() {
   if (daynow == 2){
 
     if ((timenow >= 000000) && (timenow < 221000)) {
-      let weekly_chanmsg = createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
+      let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
       .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
