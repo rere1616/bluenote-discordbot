@@ -150,7 +150,7 @@ function createmsg(t, d, m) {
   .setAuthor({ name: '길드 주간 목표 알림', iconURL: 'https://ark.bynn.kr/assets/lostark/quest_guild.png' })
   .setDescription(t + ' (' + d + ')')
   .addFields(
-    { name: m, value: ' ' },
+    { name: m, value: 'test' },
   )
   .setTimestamp();
 }
