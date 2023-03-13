@@ -167,11 +167,26 @@ async function Weekly_checkdate() {
   var timenow = moment().format('HHmmss');
   var daynow = moment().day();
 
+
+  const readline = require('readline');
+  const rl = readline.createInterface({
+       input: fs.createReadStream('./tmp/taskslist.txt')
+  });
+  var mission;
+
+
+
   if (daynow == 2) {
 
     if ((timenow >= 220000) && (timenow < 221000)) {
+
+      rl.on('line', function (line) {
+        let taskcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
+        let s = line.split(':');
+        var mission = s[taskcount];
+      })
+
 //      let mission = await loadms('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
-let mission = `큐브, 위험해역, 고고학`
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
