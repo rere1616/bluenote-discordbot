@@ -123,9 +123,7 @@ function ontime_check(fn, t) {
 }
 
 ///////////////  채널 출력 메세지 생성
-var mission;
-
-function loadms(t, n) {
+function loadmsn(t, n) {
   const readline = require('readline');
   const rl = readline.createInterface({
        input: fs.createReadStream(t)
@@ -134,9 +132,9 @@ function loadms(t, n) {
     rl.on('line', function (line) {
       let taskcount = fs.readFileSync(n, {encoding:'utf8', flag:'r'})
       let s = line.split(':');
-      var ms = s[taskcount];
+      var mission = s[taskcount];
 
-      resolve(ms);
+      resolve(mission);
     })
   })
 };
@@ -163,37 +161,32 @@ async function Weekly_checkdate() {
 
   var timestamp = moment().format('HH:mm:ss');
   var datenow = moment().format('YYYY-MM-DD');
-  var datenxt = moment().add(1, 'day')
   var timenow = moment().format('HHmmss');
   var daynow = moment().day();
 
-
-  const readline = require('readline');
-  const rl = readline.createInterface({
-       input: fs.createReadStream('./tmp/taskslist.txt')
-  });
+//  const fileroute = 'tmp/taskslist.txt';
+//  const readline = require('readline');
+//  const rl = readline.createInterface({
+//    input: fs.createReadStream('tmp/taskslist.txt')
+//  });
   var mission;
+
+  var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'});
+//  WeeklyTasksCount.txt 파일 읽기
 
 
 
   if (daynow == 2) {
 
-    if ((timenow >= 220000) && (timenow < 221000)) {
-
-      rl.on('line', async function (line) {
-        let taskcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
-        let s = line.split(':');
-        let mission = s[taskcount];
-
-        let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
-        const channel = await client.channels.fetch(chanID1);
-        channel.send({ embeds: [weekly_chanmsg] })
-        .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
-        .catch(console.error);
-
-      })
-
-//      let mission = await loadms('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+    if((timenow >= 220000) && (timenow < 221000)) {
+      let datenxt = await moment().add(1, 'day')
+//      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+let mission = `큐브, 고고학, 주화`
+      let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
+      const channel = await client.channels.fetch(chanID1);
+      channel.send({ embeds: [weekly_chanmsg] })
+      .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
+      .catch(console.error);
 
 
 /*      rl.on('line', function (line) {
@@ -219,8 +212,8 @@ async function Weekly_checkdate() {
   else if (daynow == 3) {
 
     if ((timenow >= 100000) && (timenow < 101000)) {
-//      let mission = await loadms('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
-let mission = `큐브, 위험해역, 고고학`
+//      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+let mission = `큐브, 고고학, 주화`
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
