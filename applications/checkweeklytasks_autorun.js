@@ -180,10 +180,10 @@ async function Weekly_checkdate() {
 
     if ((timenow >= 220000) && (timenow < 221000)) {
 
-      rl.on('line', function (line) {
+      rl.on('line', async function (line) {
         let taskcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
         let s = line.split(':');
-        var mission = s[taskcount];
+        let mission = s[taskcount];
 
         let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
         const channel = await client.channels.fetch(chanID1);
