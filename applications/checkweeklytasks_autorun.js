@@ -184,14 +184,16 @@ async function Weekly_checkdate() {
         let taskcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
         let s = line.split(':');
         var mission = s[taskcount];
+
+        let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
+        const channel = await client.channels.fetch(chanID1);
+        channel.send({ embeds: [weekly_chanmsg] })
+        .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
+        .catch(console.error);
+
       })
 
 //      let mission = await loadms('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
-      let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
-      const channel = await client.channels.fetch(chanID1);
-      channel.send({ embeds: [weekly_chanmsg] })
-      .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
-      .catch(console.error);
 
 
 /*      rl.on('line', function (line) {
