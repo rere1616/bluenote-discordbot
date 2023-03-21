@@ -126,7 +126,7 @@ function ontime_check(fn, t) {
 async function loadmsn(t, n) {
   return new Promise((resolve, reject) => {
     let readline = require('readline');
-    let rl = await readline.createInterface({
+    let rl = readline.createInterface({
          input: fs.createReadStream(t)
     });
     rl.on('line', async function (line) {
