@@ -123,18 +123,18 @@ function ontime_check(fn, t) {
 }
 
 ///////////////  채널 출력 메세지 생성
-function loadmsn(t, n) {
+async function loadmsn(t, n) {
   const readline = require('readline');
   const rl = readline.createInterface({
        input: fs.createReadStream(t)
   });
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => await {
     rl.on('line', function (line) {
       let taskcount = fs.readFileSync(n, {encoding:'utf8', flag:'r'})
       let s = line.split(':');
-      var mission = s[taskcount];
+      let msn = s[taskcount];
 
-      resolve(mission);
+      resolve(msn);
     })
   })
 };
@@ -148,7 +148,7 @@ function createmsg(t, d, m) {
   .setAuthor({ name: '길드 주간 목표 알림', iconURL: 'https://ark.bynn.kr/assets/lostark/quest_guild.png' })
   .setDescription(t + ' (' + d + ')')
   .addFields(
-    { name: m, value: ' ' },
+    { name: 'm', value: ' ' },
   )
   .setTimestamp();
 }
@@ -180,7 +180,7 @@ async function Weekly_checkdate() {
 
     if((timenow >= 220000) && (timenow < 221000)) {
       let datenxt = await moment().add(1, 'day')
-      let mission = await loadmsn('../tmp/taskslist.txt', '../tmp/WeeklyTasksCount.txt');
+      let mission = await loadmsn(`./tmp/taskslist.txt`, `./tmp/WeeklyTasksCount.txt`);
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
