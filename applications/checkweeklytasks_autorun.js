@@ -212,6 +212,7 @@ async function Weekly_checkdate() {
 
     if ((timenow >= 000000) && (timenow < 101000)) {
       let mission = await loadmsn(`./tmp/taskslist.txt`, `./tmp/WeeklyTasksCount.txt`);
+      console.log(mission)
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       const channel = client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
