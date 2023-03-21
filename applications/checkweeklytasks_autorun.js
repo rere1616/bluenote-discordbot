@@ -123,23 +123,22 @@ function ontime_check(fn, t) {
 }
 
 ///////////////  채널 출력 메세지 생성
-/*
 function loadmsn(t, n) {
   const readline = require('readline');
   const rl = readline.createInterface({
        input: fs.createReadStream(t)
   });
   return new Promise((resolve, reject) => {
-    rl.on('line', async function (line) {
-      let taskcount = await fs.readFileSync(n, {encoding:'utf8', flag:'r'})
+    rl.on('line', function (line) {
+      let taskcount = fs.readFileSync(n, {encoding:'utf8', flag:'r'})
       let s = line.split(':');
-      let msn = s[taskcount];
+      var mission = s[taskcount];
 
-      resolve(msn);
+      resolve(mission);
     })
   })
 };
-*/
+
 
 ///////////////  채널 출력 메세지 생성
 function createmsg(t, d, m) {
@@ -175,42 +174,19 @@ async function Weekly_checkdate() {
   var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'});
 //  WeeklyTasksCount.txt 파일 읽기
 
-const readline = require('readline');
-const rl = readline.createInterface({
-     input: fs.createReadStream(`./tmp/taskslist.txt`)
-});
 
 
   if (daynow == 2) {
 
     if((timenow >= 220000) && (timenow < 221000)) {
-<<<<<<< HEAD
-      let datenxt = moment().add(1, 'day')
-
-    rl.on('line', async function (line) {
-      let taskcount = await fs.readFileSync(`./tmp/WeeklyTasksCount.txt`, {encoding:'utf8', flag:'r'})
-      let s = line.split(':');
-      var mission = s[taskcount];
-
-
-      //      let mission = await loadmsn(`./tmp/taskslist.txt`, `./tmp/WeeklyTasksCount.txt`);
-            let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
-            const channel = await client.channels.fetch(chanID1);
-            channel.send({ embeds: [weekly_chanmsg] })
-            .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
-            .catch(console.error);
-
-    })
-=======
       let datenxt = await moment().add(1, 'day')
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
-let mission = `큐브, 고고학, 주화`
+let mission = `큐브, 주화, 위험해역`
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
       .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
       .catch(console.error);
->>>>>>> parent of 3c2146d (Update checkweeklytasks_autorun.js)
 
 
 /*      rl.on('line', function (line) {
@@ -235,32 +211,14 @@ let mission = `큐브, 고고학, 주화`
   }
   else if (daynow == 3) {
 
-<<<<<<< HEAD
-    if ((timenow >= 000000) && (timenow < 101000)) {
-
-    rl.on('line', async function (line) {
-      let taskcount = await fs.readFileSync(`./tmp/WeeklyTasksCount.txt`, {encoding:'utf8', flag:'r'})
-      let s = line.split(':');
-      var mission = s[taskcount];
-
-      //      let mission = await loadmsn(`./tmp/taskslist.txt`, `./tmp/WeeklyTasksCount.txt`);
-            let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
-            const channel = client.channels.fetch(chanID1);
-            channel.send({ embeds: [weekly_chanmsg] })
-            .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
-            .catch(console.error);
-
-    })
-=======
     if ((timenow >= 100000) && (timenow < 101000)) {
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
-let mission = `큐브, 고고학, 주화`
+let mission = `큐브, 주화, 위험해역`
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
       .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
       .catch(console.error);
->>>>>>> parent of 3c2146d (Update checkweeklytasks_autorun.js)
 
 
 /*      rl.on('line', function (line) {
