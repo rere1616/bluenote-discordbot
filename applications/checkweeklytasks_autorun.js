@@ -124,11 +124,11 @@ function ontime_check(fn, t) {
 
 ///////////////  채널 출력 메세지 생성
 async function loadmsn(t, n) {
-  const readline = require('readline');
-  const rl = await readline.createInterface({
-       input: fs.createReadStream(t)
-  });
   return new Promise((resolve, reject) => {
+    let readline = require('readline');
+    let rl = await readline.createInterface({
+         input: fs.createReadStream(t)
+    });
     rl.on('line', async function (line) {
       let taskcount = await fs.readFileSync(n, {encoding:'utf8', flag:'r'})
       let s = line.split(':');
