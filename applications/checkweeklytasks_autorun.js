@@ -129,7 +129,7 @@ async function loadmsn(t, n) {
        input: fs.createReadStream(t)
   });
   return new Promise((resolve, reject) => {
-    rl.on('line', function (line) {
+    rl.on('line', async function (line) {
       let taskcount = await fs.readFileSync(n, {encoding:'utf8', flag:'r'})
       let s = line.split(':');
       let msn = s[taskcount];
