@@ -123,12 +123,13 @@ function ontime_check(fn, t) {
 }
 
 ///////////////  채널 출력 메세지 생성
-async function loadmsn(t, n) {
+/*
+function loadmsn(t, n) {
+  const readline = require('readline');
+  const rl = readline.createInterface({
+       input: fs.createReadStream(t)
+  });
   return new Promise((resolve, reject) => {
-    let readline = require('readline');
-    let rl = readline.createInterface({
-         input: fs.createReadStream(t)
-    });
     rl.on('line', async function (line) {
       let taskcount = await fs.readFileSync(n, {encoding:'utf8', flag:'r'})
       let s = line.split(':');
@@ -138,7 +139,7 @@ async function loadmsn(t, n) {
     })
   })
 };
-
+*/
 
 ///////////////  채널 출력 메세지 생성
 function createmsg(t, d, m) {
@@ -174,13 +175,24 @@ async function Weekly_checkdate() {
   var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'});
 //  WeeklyTasksCount.txt 파일 읽기
 
+const readline = require('readline');
+const rl = readline.createInterface({
+     input: fs.createReadStream(`./tmp/taskslist.txt`)
+});
 
 
   if (daynow == 2) {
 
     if((timenow >= 220000) && (timenow < 221000)) {
       let datenxt = moment().add(1, 'day')
-      let mission = await loadmsn(`./tmp/taskslist.txt`, `./tmp/WeeklyTasksCount.txt`);
+
+    rl.on('line', async function (line) {
+      let taskcount = await fs.readFileSync(`./tmp/WeeklyTasksCount.txt`, {encoding:'utf8', flag:'r'})
+      let s = line.split(':');
+      var mission = s[taskcount];
+    })
+
+//      let mission = await loadmsn(`./tmp/taskslist.txt`, `./tmp/WeeklyTasksCount.txt`);
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
@@ -211,8 +223,14 @@ async function Weekly_checkdate() {
   else if (daynow == 3) {
 
     if ((timenow >= 000000) && (timenow < 101000)) {
-      let mission = await loadmsn(`./tmp/taskslist.txt`, `./tmp/WeeklyTasksCount.txt`);
-      console.log(mission)
+
+    rl.on('line', async function (line) {
+      let taskcount = await fs.readFileSync(`./tmp/WeeklyTasksCount.txt`, {encoding:'utf8', flag:'r'})
+      let s = line.split(':');
+      var mission = s[taskcount];
+    })
+
+//      let mission = await loadmsn(`./tmp/taskslist.txt`, `./tmp/WeeklyTasksCount.txt`);
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       const channel = client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
