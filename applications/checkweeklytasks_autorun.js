@@ -184,6 +184,7 @@ const rl = readline.createInterface({
   if (daynow == 2) {
 
     if((timenow >= 220000) && (timenow < 221000)) {
+<<<<<<< HEAD
       let datenxt = moment().add(1, 'day')
 
     rl.on('line', async function (line) {
@@ -200,6 +201,16 @@ const rl = readline.createInterface({
             .catch(console.error);
 
     })
+=======
+      let datenxt = await moment().add(1, 'day')
+//      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+let mission = `큐브, 고고학, 주화`
+      let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
+      const channel = await client.channels.fetch(chanID1);
+      channel.send({ embeds: [weekly_chanmsg] })
+      .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
+      .catch(console.error);
+>>>>>>> parent of 3c2146d (Update checkweeklytasks_autorun.js)
 
 
 /*      rl.on('line', function (line) {
@@ -224,6 +235,7 @@ const rl = readline.createInterface({
   }
   else if (daynow == 3) {
 
+<<<<<<< HEAD
     if ((timenow >= 000000) && (timenow < 101000)) {
 
     rl.on('line', async function (line) {
@@ -239,6 +251,16 @@ const rl = readline.createInterface({
             .catch(console.error);
 
     })
+=======
+    if ((timenow >= 100000) && (timenow < 101000)) {
+//      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+let mission = `큐브, 고고학, 주화`
+      let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
+      const channel = await client.channels.fetch(chanID1);
+      channel.send({ embeds: [weekly_chanmsg] })
+      .then(console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Outputting messages...'))
+      .catch(console.error);
+>>>>>>> parent of 3c2146d (Update checkweeklytasks_autorun.js)
 
 
 /*      rl.on('line', function (line) {
