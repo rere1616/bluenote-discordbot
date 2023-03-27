@@ -185,8 +185,8 @@ async function Weekly_checkdate() {
       let datenxt = moment().add(1, 'day')
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 
-      let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
-      let mission = tlist.split(':')[tcount];
+      let tcount = await fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
+      let mission = await tlist.split(':')[tcount];
 
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
