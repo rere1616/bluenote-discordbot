@@ -176,24 +176,22 @@ async function Weekly_checkdate() {
 //  const rl = readline.createInterface({
 //    input: fs.createReadStream('tmp/taskslist.txt')
 //  });
+  var mission;
 
   var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'});
 //  WeeklyTasksCount.txt 파일 읽기
 
 
 
-  if (daynow == 2) {
+  if (daynow == 1) {
 
-    if((timenow >= 220000) && (timenow < 221000)) {
+    if((timenow >= 000000) && (timenow < 221000)) {
       let datenxt = moment().add(1, 'day')
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 
       let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
       let mission = tlist.split(':')[tcount];
 
-    if((timenow >= 000000) && (timenow < 221000)) {
-      let datenxt = await moment().add(1, 'day')
-      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
