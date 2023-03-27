@@ -179,7 +179,7 @@ async function Weekly_checkdate() {
 
 
 
-  if (daynow == 1) {
+  if (daynow == 2) {
 
     if((timenow >= 000000) && (timenow < 221000)) {
       let datenxt = moment().add(1, 'day')
