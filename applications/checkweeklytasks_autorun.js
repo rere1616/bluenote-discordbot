@@ -145,6 +145,10 @@ function loadmsn(t, n) {
   })
 };
 */
+const readline = require('readline');
+const rl = readline.createInterface({
+     input: fs.createReadStream(t)
+});
 const tlist = `:큐브, 고고학, 주화:큐브, 주화, 위험해역:큐브, 위험해역, 고고학`
 
 ///////////////  채널 출력 메세지 생성
