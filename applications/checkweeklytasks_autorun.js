@@ -11,6 +11,11 @@ const { chanID1 } = require("../config.json");
 function initapprun() {
   var init_check = setTimeout(Weekly_checkdate, 0)
   console.log('**[' + path.basename(__filename) + '] start')
+
+  let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
+  let mission = tlist.split(':')[tcount];
+  console.log('└tcount value: ' + tcount)
+  console.log('└Upcoming mission: ' + mission)
 };
 
 module.exports = initapprun();
@@ -123,6 +128,7 @@ function ontime_check(fn, t) {
 }
 
 ///////////////  채널 출력 메세지 생성
+/*
 function loadmsn(t, n) {
   const readline = require('readline');
   const rl = readline.createInterface({
@@ -138,7 +144,8 @@ function loadmsn(t, n) {
     })
   })
 };
-
+*/
+const tlist = `:큐브, 고고학, 주화:큐브, 주화, 위험해역:큐브, 위험해역, 고고학`
 
 ///////////////  채널 출력 메세지 생성
 function createmsg(t, d, m) {
@@ -175,7 +182,14 @@ async function Weekly_checkdate() {
 
 
 
-  if (daynow == 1) {
+  if (daynow == 2) {
+
+    if((timenow >= 220000) && (timenow < 221000)) {
+      let datenxt = moment().add(1, 'day')
+//      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+
+      let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
+      let mission = tlist.split(':')[tcount];
 
     if((timenow >= 000000) && (timenow < 221000)) {
       let datenxt = await moment().add(1, 'day')
@@ -210,7 +224,11 @@ async function Weekly_checkdate() {
   else if (daynow == 3) {
 
     if ((timenow >= 100000) && (timenow < 101000)) {
-      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+//      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
+
+      let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
+      let mission = tlist.split(':')[tcount];
+
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       const channel = await client.channels.fetch(chanID1);
       channel.send({ embeds: [weekly_chanmsg] })
