@@ -11,11 +11,6 @@ const { chanID1 } = require("../config.json");
 function initapprun() {
   var init_check = setTimeout(Weekly_checkdate, 0)
   console.log('**[' + path.basename(__filename) + '] start')
-
-  let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
-  let mission = tlist.split(':')[tcount];
-  console.log('└tcount value: ' + tcount)
-  console.log('└Upcoming mission: ' + mission)
 };
 
 module.exports = initapprun();
