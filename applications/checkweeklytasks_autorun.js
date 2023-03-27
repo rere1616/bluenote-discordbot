@@ -174,7 +174,7 @@ async function Weekly_checkdate() {
 //  });
 //  var mission;
 
-  var taskcount =  fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'});
+  var taskcount =  await fs.readFileSync('tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'});
 //  WeeklyTasksCount.txt 파일 읽기
 
 
@@ -186,7 +186,7 @@ async function Weekly_checkdate() {
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 
       let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
-      let mission = await tlist.split(':')[tcount];
+      let mission = tlist.split(':')[tcount];
 
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
