@@ -11,6 +11,11 @@ const { chanID1 } = require("../config.json");
 function initapprun() {
   var init_check = setTimeout(Weekly_checkdate, 0)
   console.log('**[' + path.basename(__filename) + '] start')
+
+  let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
+  let mission = tlist.split(':')[tcount];
+  console.log('└tcount value: ' + tcount)
+  console.log('└Upcoming mission: ' + mission)
 };
 
 module.exports = initapprun();
@@ -140,7 +145,7 @@ function loadmsn(t, n) {
   })
 };
 */
-const taskslist = `:큐브, 고고학, 주화:큐브, 주화, 위험해역:큐브, 위험해역, 고고학`
+const tlist = `:큐브, 고고학, 주화:큐브, 주화, 위험해역:큐브, 위험해역, 고고학`
 
 ///////////////  채널 출력 메세지 생성
 function createmsg(t, d, m) {
@@ -185,7 +190,7 @@ async function Weekly_checkdate() {
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 
       let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
-      let mission = taskslist.split(':')[tcount];
+      let mission = tlist.split(':')[tcount];
 
       let weekly_chanmsg = await createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
@@ -220,7 +225,7 @@ async function Weekly_checkdate() {
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 
       let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
-      let mission = taskslist.split(':')[tcount];
+      let mission = tlist.split(':')[tcount];
 
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       const channel = await client.channels.fetch(chanID1);
