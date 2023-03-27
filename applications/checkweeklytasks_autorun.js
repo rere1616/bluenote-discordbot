@@ -183,9 +183,9 @@ async function Weekly_checkdate() {
 
 
 
-  if (daynow == 2) {
+  if (daynow == 1) {
 
-    if((timenow >= 220000) && (timenow < 221000)) {
+    if((timenow >= 000000) && (timenow < 221000)) {
       let datenxt = moment().add(1, 'day')
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 
