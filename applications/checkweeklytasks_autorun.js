@@ -176,9 +176,9 @@ async function Weekly_checkdate() {
 
 
 
-  if (daynow == 3) {
+  if (daynow == 2) {
 
-    if((timenow >= 000000) && (timenow < 221000)) {
+    if((timenow >= 220000) && (timenow < 221000)) {
       let datenxt = moment().add(1, 'day')
       let mission = await loadm('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
       let weekly_chanmsg = createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
@@ -208,7 +208,7 @@ async function Weekly_checkdate() {
       console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Conditions do not match.: timenow');
     }
   }
-  else if (daynow == 4) {
+  else if (daynow == 3) {
 
     if ((timenow >= 100000) && (timenow < 101000)) {
       let mission = await loadm('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
