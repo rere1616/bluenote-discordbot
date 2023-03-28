@@ -140,7 +140,6 @@ function loadmsn(t, n) {
   })
 };
 */
-const readline = require('readline');
 const tlist = `:큐브, 고고학, 주화:큐브, 주화, 위험해역:큐브, 위험해역, 고고학`
 
 ///////////////  채널 출력 메세지 생성
@@ -178,14 +177,14 @@ async function Weekly_checkdate() {
 
 
 
-  if (daynow == 2) {
+  if (daynow == 3) {
 
-    if((timenow >= 220000) && (timenow < 221000)) {
+    if((timenow >= 000000) && (timenow < 221000)) {
       let datenxt = moment().add(1, 'day')
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 
-      let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
-      let mission = tlist.split(':')[3];
+      let tc = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
+      let mission = tlist.split(':')[parseInt(tc)];
 
       let weekly_chanmsg = createmsg(datenxt.format('YYYY-MM-DD'), week[(daynow + 1)], mission);
       const channel = await client.channels.fetch(chanID1);
@@ -214,13 +213,13 @@ async function Weekly_checkdate() {
       console.log('[' + timestamp + '] ' + path.basename(__filename) + '>> Weekly_checkdate>> Conditions do not match.: timenow');
     }
   }
-  else if (daynow == 3) {
+  else if (daynow == 4) {
 
     if ((timenow >= 100000) && (timenow < 101000)) {
 //      let mission = await loadmsn('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
 
-      let tcount = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
-      let mission = tlist.split(':')[3];
+      let tc = fs.readFileSync('./tmp/WeeklyTasksCount.txt', {encoding:'utf8', flag:'r'})
+      let mission = tlist.split(':')[parseInt(tc)];
 
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       const channel = await client.channels.fetch(chanID1);
