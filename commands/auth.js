@@ -14,7 +14,7 @@ function compareid(v) {
   return new Promise((resolve, reject) => {
     rl.on('line', function (line) {
       if (line === v) { resolve(line); }
-      else { return false; }
+      else { reject(); }
     })
   })
 };
