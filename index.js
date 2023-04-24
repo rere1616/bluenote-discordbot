@@ -21,12 +21,12 @@ let week = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
 
 client.once('ready', () => {
   client.user
-  .verified
   .setUsername(`BLUENOTE`)
   .setAvatar(profileimg)
-  .setPresence(online)
+  .setPresence(online);
 //  .setStatus(status, shardId)
 //  .setActivity(name, options = {})
+//  .verified
 
   console.log('\n');
   console.log('*************');
