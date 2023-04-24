@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const { Client, Collection, Intents, GatewayIntentBits, REST, Routes, Events } = require("discord.js");
 const { clientId, guildId } = require('./config.json');
 const fs = require("fs");
+const profileimg = `./tmp/bot_profile2.jpg`
 
 const client = new Discord.Client({
     intents: [
@@ -10,6 +11,7 @@ const client = new Discord.Client({
 });
 
 client.once('ready', () => {
+  client.change_presence(status=discord.Status.online, avatar=profileimg)
 
   const moment = require('moment');
   require('moment-timezone');
