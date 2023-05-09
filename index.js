@@ -20,7 +20,6 @@ let daynow = moment().day();
 let week = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
 
 client.once('ready', () => {
-  
 /*
   ClientUser
   .setUsername(`BLUENOTE`)
