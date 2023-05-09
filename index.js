@@ -11,7 +11,7 @@ const client = new Discord.Client({
 });
 
 client.once('ready', () => {
-  client.change_presence(status=Discord.Status.online, avatar=profileimg)
+  client.change_presence(status=discord.Status.online, avatar=profileimg)
 
   const moment = require('moment');
   require('moment-timezone');
