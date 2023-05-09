@@ -10,27 +10,26 @@ const client = new Discord.Client({
     ]
 });
 
-var moment = require('moment');
+let moment = require('moment');
 require('moment-timezone');
 moment.tz.setDefault("Asia/Seoul");
 
+let timestamp = moment().format('HH:mm:ss');
+let datenow = moment().format('YYYY-MM-DD');
+let daynow = moment().day();
+let week = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
+
+client.once('ready', () => {
+  
 /*
-ClientUser
-.setUsername(`BLUENOTE`)
-.setAvatar(profileimg)
-.setPresence(online);
+  ClientUser
+  .setUsername(`BLUENOTE`)
+  .setAvatar(profileimg)
+  .setPresence(online);
 //  .setStatus(status, shardId)
 //  .setActivity(name, options = {})
 //  .verified
 */
-
-client.once('ready', () => {
-
-  let timestamp = moment().format('HH:mm:ss');
-  let datenow = moment().format('YYYY-MM-DD');
-  let daynow = moment().day();
-  let week = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
-
   console.log('\n');
   console.log('*************');
   console.log('The time now is..  ' + (datenow + ' (' + week[daynow] + ') ') + timestamp);
