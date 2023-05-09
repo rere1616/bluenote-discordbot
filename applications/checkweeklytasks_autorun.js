@@ -139,7 +139,6 @@ function loadm(t, n) {
   })
 };
 
-const tlist = `:큐브, 고고학, 주화:큐브, 주화, 위험해역:큐브, 위험해역, 고고학`
 
 ///////////////  채널 출력 메세지 생성
 function createmsg(t, d, m) {
