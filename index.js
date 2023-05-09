@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { Client, ClientUser, Collection, Intents, GatewayIntentBits, REST, Routes, Events } = require("discord.js");
+const { Client, Collection, Intents, GatewayIntentBits, REST, Routes, Events } = require("discord.js");
 const { clientId, guildId } = require('./config.json');
 const fs = require("fs");
 const profileimg = `./tmp/bot_profile2.jpg`
@@ -20,7 +20,7 @@ let daynow = moment().day();
 let week = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
 
 client.once('ready', () => {
-  ClientUser
+  client
   .setUsername(`BLUENOTE`)
   .setAvatar(profileimg)
   .setPresence(online);
