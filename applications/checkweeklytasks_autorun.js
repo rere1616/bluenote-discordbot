@@ -209,7 +209,7 @@ async function Weekly_checkdate() {
   }
   else if (daynow == 3) {
 
-    if ((timenow >= 100000) && (timenow < 104000)) {
+    if ((timenow >= 100000) && (timenow < 101000)) {
       let mission = await loadm('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       const channel = await client.channels.fetch(chanID1);
