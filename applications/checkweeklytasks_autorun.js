@@ -139,7 +139,6 @@ function loadm(t, n) {
   })
 };
 
-const tlist = `:큐브, 고고학, 주화:큐브, 주화, 위험해역:큐브, 위험해역, 고고학`
 
 ///////////////  채널 출력 메세지 생성
 function createmsg(t, d, m) {
@@ -210,7 +209,7 @@ async function Weekly_checkdate() {
   }
   else if (daynow == 3) {
 
-    if ((timenow >= 100000) && (timenow < 101000)) {
+    if ((timenow >= 100000) && (timenow < 104000)) {
       let mission = await loadm('./tmp/taskslist.txt', './tmp/WeeklyTasksCount.txt');
       let weekly_chanmsg = await createmsg(datenow, week[daynow], mission);
       const channel = await client.channels.fetch(chanID1);
