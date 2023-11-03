@@ -38,11 +38,11 @@ const commandFiles = fs
   .readdirSync("./commands")
   .filter((file) => file.endsWith(".js"));
 
-
+/*
 const autoappFiles = fs
   .readdirSync("./applications")
   .filter((file) => file.endsWith("_autorun.js"));
-
+*/
 
 
 client.on("ready", async () => {
